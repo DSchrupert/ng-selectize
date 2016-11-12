@@ -1,11 +1,7 @@
-div.examples {
+div.main {
 	padding: 10px;
 }
 
-div.examples > h1 {
+div.main > h1 {
 	margin-left: 100px;
-}
-
-div.examples > div {
-	margin: 50px 100px;
 }

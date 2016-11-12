@@ -6,14 +6,21 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {Ng2SelectizeDirective} from './ng2-selectize.directive';
 import {MaterialModule, MdIconRegistry} from "@angular/material";
+import {RouterModule} from "@angular/router";
+import {HomeComponent} from "./home/home.component";
+import {PerformanceComponent} from "./performance/performance.component";
 
 @NgModule({
-	declarations: [AppComponent, Ng2SelectizeDirective],
+	declarations: [AppComponent, HomeComponent, PerformanceComponent, Ng2SelectizeDirective],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
-		MaterialModule
+		MaterialModule,
+		RouterModule.forRoot([
+			{path: 'performance', component: PerformanceComponent},
+			{path: '', component: HomeComponent}
+		])
 	],
 	providers: [MdIconRegistry],
 	bootstrap: [AppComponent]

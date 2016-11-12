@@ -31,6 +31,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		if (this.placeholder != null && this.placeholder.length > 0) {
 			this.updatePlaceholder();
 		}
+		console.log("Selectize options: ", this.options);
 	}
 
 	/**

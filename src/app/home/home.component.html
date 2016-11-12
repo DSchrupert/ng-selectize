@@ -1,0 +1,20 @@
+<div class="example">
+	<label>Dynamically add options to <strong>Multi</strong> select: </label>
+	<input type="text" ng2-selectize
+		   [config]="multiSelectDynamicAddConfig"
+		   [options]="multiSelectDynamicAddOptions"
+		   [placeholder]="multiSelectDynamicAddPlaceholder"
+		   (onValueChange)="onSelectizeValueChange($event)"/>
+
+	<button (click)="addMultiSelectDynamicAddOption()">Add Option</button>
+	<input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"/>
+</div>
+
+<div class="example">
+	<label>Dynamically add options to <strong>Single</strong> select</label>
+	<input type="text" ng2-selectize
+		   [config]="singleSelectDynamicAddConfig"
+		   [options]="singleSelectDynamicAddOptions"
+		   (onValueChange)="onSelectizeValueChange($event)"/>
+	<button (click)="addSingleSelectDynamicAddOption()">Add Option</button>
+</div>

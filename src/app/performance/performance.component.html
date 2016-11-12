@@ -1,0 +1,11 @@
+<div class="example">
+	<label>Performance Testing: </label>
+
+	<input type="text" ng2-selectize
+		   [config]="performanceTestConfig"
+		   [options]="options"
+		   (onValueChange)="printValue($event)"/>
+
+	<label>Number of options:</label>
+	<input type="number" [(ngModel)]="optionsLength" (ngModelChange)="onOptionsCountChange($event)"/>
+</div>

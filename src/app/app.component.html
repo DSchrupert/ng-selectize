@@ -4,6 +4,8 @@
 			<button md-button (click)="start.close()">
 				<md-icon>menu</md-icon>
 			</button>
+			<div><a routerLinkActive="active" routerLink="">Home</a> </div>
+			<div><a routerLinkActive="active" routerLink="/performance">Performance Testing</a></div>
 		</md-sidenav>
 		<md-toolbar [color]="primary">
 			<button md-button (click)="start.open()">
@@ -13,27 +15,9 @@
 				ng2-selectize
 			</div>
 		</md-toolbar>
-		<div class="examples">
+		<div class="main">
 			<h1>{{title}}</h1>
-			<div>
-				<label>Dynamically add options to <strong>Multi</strong> select: </label>
-				<input type="text" ng2-selectize
-					   [config]="multiSelectDynamicAddConfig"
-					   [options]="multiSelectDynamicAddOptions"
-					   [placeholder]="multiSelectDynamicAddPlaceholder"
-					   (onValueChange)="onSelectizeValueChange($event)"/>
-
-				<button (click)="addMultiSelectDynamicAddOption()">Add Option</button>
-				<input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"/>
-			</div>
-			<div>
-				<label>Dynamically add options to <strong>Single</strong> select</label>
-				<input type="text" ng2-selectize
-					   [config]="singleSelectDynamicAddConfig"
-					   [options]="singleSelectDynamicAddOptions"
-					   (onValueChange)="onSelectizeValueChange($event)"/>
-				<button (click)="addSingleSelectDynamicAddOption()">Add Option</button>
-			</div>
+			<router-outlet></router-outlet>
 		</div>
 	</md-sidenav-layout>
 </div>
