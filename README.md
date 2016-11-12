@@ -29,3 +29,4 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 | config | Object | Selectize config |
 | options | Array | Available options to select from |
 | onValueChange | Function | Callback function when value changes |
+| placeholder | String | Placeholder text to be displayed |
