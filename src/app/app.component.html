@@ -1,10 +1,14 @@
 <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0">
 	<md-sidenav-layout style="height: 100%;">
 		<md-sidenav #start>
-			<button md-button (click)="start.close()"><md-icon>menu</md-icon></button>
+			<button md-button (click)="start.close()">
+				<md-icon>menu</md-icon>
+			</button>
 		</md-sidenav>
 		<md-toolbar [color]="primary">
-			<button md-button (click)="start.open()"><md-icon>menu</md-icon></button>
+			<button md-button (click)="start.open()">
+				<md-icon>menu</md-icon>
+			</button>
 			<div>
 				ng2-selectize
 			</div>
