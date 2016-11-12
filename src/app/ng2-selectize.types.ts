@@ -1,4 +1,4 @@
-export interface SelectizeOption {
+export interface ExampleSelectizeOption {
 	label: string;
 	value: any;
 }

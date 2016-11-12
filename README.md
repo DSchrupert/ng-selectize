@@ -14,7 +14,7 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 3. Include directive within applicable module:
    `import {Ng2SelectizeDirective} from 'ng2-selectize';`
    `declarations: [Ng2SelectizeDirective, ...],`
-4. Use within template: `<input type="text" ng2-selectize {options}/>`
+4. Use within template: `<input type="text" ng2-selectize {attributes}/>`
  
 ## Running the example
  ```
@@ -26,6 +26,6 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 ## Attributes
 | Attribute | Type | Description |
 | --- | --- | --- |
-| config              | Object   | Selectize config                     |
-| options             | Array    | Available options to select from     |
-| onValueChange       | Function | Callback function when value changes |
+| config | Object | Selectize config |
+| options | Array | Available options to select from |
+| onValueChange | Function | Callback function when value changes |

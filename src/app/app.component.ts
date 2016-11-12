@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {SelectizeOption} from "./ng2-selectize.types";
+import {ExampleSelectizeOption} from "./ng2-selectize.types";
 
 @Component({
 	selector: '[app-root]',
@@ -9,23 +9,45 @@ import {SelectizeOption} from "./ng2-selectize.types";
 export class AppComponent {
 	title = 'Angular 2 Selectize Example';
 
-	selectizeConfig:Selectize.IOptions<any, any> = {
+	multiSelectDynamicAddConfig:Selectize.IOptions<any, any> = {
 		persist: true,
 		labelField: 'label',
-		valueField: 'value'
+		valueField: 'value',
+		plugins: ['remove_button']
 	};
 
-	selectizeOptions:SelectizeOption[] = [<SelectizeOption>{
+	multiSelectDynamicAddPlaceholder: string = "Placeholder...";
+
+	singleSelectDynamicAddConfig:Selectize.IOptions<any, any> = {
+		persist: true,
+		labelField: 'label',
+		valueField: 'value',
+		maxItems: 1
+	};
+
+	multiSelectDynamicAddOptions:ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
 		label: 'init',
 		value: 'value'
 	}];
 
-	onSelectizeValueChange(something) {
-		console.log("Selectize value changed: ", something)
+	singleSelectDynamicAddOptions:ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
+		label: 'init',
+		value: 'value'
+	}];
+
+	onSelectizeValueChange(value) {
+		console.log("Selectize value changed: ", value)
 	}
 
-	addOption() {
-		this.selectizeOptions.push(<SelectizeOption>{
+	addMultiSelectDynamicAddOption() {
+		this.multiSelectDynamicAddOptions.push(<ExampleSelectizeOption>{
+			label: Math.random().toString(),
+			value: Math.random()
+		});
+	}
+
+	addSingleSelectDynamicAddOption() {
+		this.singleSelectDynamicAddOptions.push(<ExampleSelectizeOption>{
 			label: Math.random().toString(),
 			value: Math.random()
 		});

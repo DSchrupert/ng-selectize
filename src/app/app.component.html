@@ -13,17 +13,27 @@
 				ng2-selectize
 			</div>
 		</md-toolbar>
-		<div style="padding: 10px;">
-			<h1>
-				{{title}}
-			</h1>
+		<div class="examples">
+			<h1>{{title}}</h1>
+			<div>
+				<label>Dynamically add options to <strong>Multi</strong> select: </label>
+				<input type="text" ng2-selectize
+					   [config]="multiSelectDynamicAddConfig"
+					   [options]="multiSelectDynamicAddOptions"
+					   [placeholder]="multiSelectDynamicAddPlaceholder"
+					   (onValueChange)="onSelectizeValueChange($event)"/>
 
-			<input type="text" ng2-selectize
-				   [config]="selectizeConfig"
-				   [options]="selectizeOptions"
-				   (onValueChange)="onSelectizeValueChange($event)"/>
-
-			<button (click)="addOption()">Add Option</button>
+				<button (click)="addMultiSelectDynamicAddOption()">Add Option</button>
+				<input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"/>
+			</div>
+			<div>
+				<label>Dynamically add options to <strong>Single</strong> select</label>
+				<input type="text" ng2-selectize
+					   [config]="singleSelectDynamicAddConfig"
+					   [options]="singleSelectDynamicAddOptions"
+					   (onValueChange)="onSelectizeValueChange($event)"/>
+				<button (click)="addSingleSelectDynamicAddOption()">Add Option</button>
+			</div>
 		</div>
 	</md-sidenav-layout>
 </div>
