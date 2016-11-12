@@ -33,6 +33,10 @@ export class HomeComponent {
 		value: 'value'
 	}];
 
+	hasOrDoesntHaveOptions: ExampleSelectizeOption[] = [];
+	hasOptionsPlaceholderText: string = 'Click to select options';
+	noOptionsPlaceholderText: string =  'No options available...';
+
 	onSelectizeValueChange(value) {
 		console.log("Selectize value changed: ", value)
 	}
@@ -46,6 +50,16 @@ export class HomeComponent {
 
 	addSingleSelectDynamicAddOption() {
 		this.singleSelectDynamicAddOptions.push(<ExampleSelectizeOption>{
+			label: Math.random().toString(),
+			value: Math.random()
+		});
+	}
+
+	clearHasOrNotExample() {
+		this.hasOrDoesntHaveOptions = [];
+	}
+	addOptionsToHaveOrNotExample() {
+		this.hasOrDoesntHaveOptions.push(<ExampleSelectizeOption>{
 			label: Math.random().toString(),
 			value: Math.random()
 		});

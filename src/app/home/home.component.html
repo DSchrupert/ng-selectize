@@ -18,3 +18,22 @@
 		   (onValueChange)="onSelectizeValueChange($event)"/>
 	<button (click)="addSingleSelectDynamicAddOption()">Add Option</button>
 </div>
+
+<div class="example">
+	<label>Preset placeholders for hasOptions/noOptions state</label>
+	<input type="text" ng2-selectize
+		   [config]="multiSelectDynamicAddConfig"
+		   [options]="hasOrDoesntHaveOptions"
+		   (onValueChange)="onSelectizeValueChange($event)"
+		   [noOptionsPlaceholder]="noOptionsPlaceholderText"
+		   [hasOptionsPlaceholder]="hasOptionsPlaceholderText"
+	/>
+	<label>Placeholder when has options:</label>
+	<input type="text" [(ngModel)]="hasOptionsPlaceholderText"/>
+	<label>Placeholder when no options:</label>
+	<input type="text" [(ngModel)]="noOptionsPlaceholderText"/>
+	<div>
+		<button (click)="clearHasOrNotExample()">Clear Options</button>
+		<button (click)="addOptionsToHaveOrNotExample()">Add Options</button>
+	</div>
+</div>

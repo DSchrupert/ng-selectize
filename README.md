@@ -29,6 +29,6 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 | config | Object | Selectize config | Yes |
 | options | Array | Available options to select from | Yes |
 | onValueChange | Function | Callback function when value changes | Yes |
-| placeholder | String | Placeholder text to be displayed, TODO: override if hasOptionsPlaceholder/noOptionsPlaceholder are non-null | Yes/No |
-| noOptionsPlaceholder | String | Placeholder text to be displayed when no options are available | No |
-| hasOptionsPlaceholder | String | Placeholder text to be displayed when options are available | No |
+| placeholder | String | Placeholder text to be displayed. Is overridden if hasOptionsPlaceholder/noOptionsPlaceholder are non-null | Yes |
+| noOptionsPlaceholder | String | Placeholder text to be displayed when no options are available | Yes |
+| hasOptionsPlaceholder | String | Placeholder text to be displayed when options are available | Yes |

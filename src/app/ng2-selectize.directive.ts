@@ -17,6 +17,8 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	@Input('config') config: Selectize.IOptions<any, any>;
 	@Input('options') options: any[];
 	@Input('placeholder') placeholder: string;
+	@Input('hasOptionsPlaceholder') hasOptionsPlaceholder: string;
+	@Input('noOptionsPlaceholder') noOptionsPlaceholder: string;
 	@Output('onValueChange') onValueChange: EventEmitter<any> = new EventEmitter(false);
 
 	_selectize: any;
@@ -31,7 +33,6 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		if (this.placeholder != null && this.placeholder.length > 0) {
 			this.updatePlaceholder();
 		}
-		console.log("Selectize options: ", this.options);
 	}
 
 	/**
@@ -39,7 +40,8 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 * @param changes
 	 */
 	ngOnChanges(changes: SimpleChanges): void {
-		if (changes.hasOwnProperty('placeholder') && this._selectize != null) {
+		if ( (changes.hasOwnProperty('placeholder') || changes.hasOwnProperty('hasOptionsPlaceholder') || changes.hasOwnProperty('noOptionsPlaceholder'))
+			&& this._selectize != null) {
 			this.updatePlaceholder();
 		}
 	}
@@ -58,8 +60,9 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 * Update the current placeholder based on the given input parameter.
 	 */
 	updatePlaceholder():void {
-		this._selectize.settings.placeholder = this.placeholder;
+		this._selectize.settings.placeholder = this.getPlaceholder();
 		this._selectize.updatePlaceholder();
+		console.log('new placeholder: ', this._selectize.settings.placeholder);
 	}
 
 	/**
@@ -67,6 +70,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 */
 	onSelectizeOptionsChange():void {
 		this._selectize.addOption(this.options);
+		this.updatePlaceholder();
 	}
 
 	/**
@@ -77,6 +81,23 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		if (this.onValueChange != null && this.onValueChange.observers != null && this.onValueChange.observers.length > 0) {
 			this.onValueChange.emit($event);
 		}
+	}
+
+	/**
+	 * Returns the applicable placeholder.
+	 *
+	 * @returns {string}
+	 */
+	getPlaceholder():string {
+		var newPlaceholder:string;
+		if (this.options != null && this.options.length > 0 && this.hasOptionsPlaceholder != null && this.hasOptionsPlaceholder.length > 0) {
+			newPlaceholder = this.hasOptionsPlaceholder;
+		} else if ((this.options == null || this.options.length == 0) && (this.noOptionsPlaceholder != null && this.noOptionsPlaceholder.length > 0)) { // no options
+			newPlaceholder = this.noOptionsPlaceholder
+		} else {
+			newPlaceholder = this.placeholder;
+		}
+		return newPlaceholder;
 	}
 
 	constructor(private el: ElementRef, private renderer: Renderer) {
