@@ -32,3 +32,5 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 | placeholder | String | Placeholder text to be displayed. Is overridden if hasOptionsPlaceholder/noOptionsPlaceholder are non-null | Yes |
 | noOptionsPlaceholder | String | Placeholder text to be displayed when no options are available | Yes |
 | hasOptionsPlaceholder | String | Placeholder text to be displayed when options are available | Yes |
+| enabled | boolean | Enables the input field when true, disabled otherwise | Yes |
+| optionGroups | Object | Organize options within groups | No |

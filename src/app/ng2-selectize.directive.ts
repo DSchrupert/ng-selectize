@@ -19,6 +19,8 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	@Input('placeholder') placeholder: string;
 	@Input('hasOptionsPlaceholder') hasOptionsPlaceholder: string;
 	@Input('noOptionsPlaceholder') noOptionsPlaceholder: string;
+	@Input('enabled') enabled: boolean;
+
 	@Output('onValueChange') onValueChange: EventEmitter<any> = new EventEmitter(false);
 
 	_selectize: any;
@@ -37,17 +39,21 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 
 	/**
 	 * Change detection for primitive types.
-	 * @param changes
 	 */
 	ngOnChanges(changes: SimpleChanges): void {
-		if ( (changes.hasOwnProperty('placeholder') || changes.hasOwnProperty('hasOptionsPlaceholder') || changes.hasOwnProperty('noOptionsPlaceholder'))
-			&& this._selectize != null) {
-			this.updatePlaceholder();
+		if (this._selectize != null) {
+			if (changes.hasOwnProperty('placeholder') || changes.hasOwnProperty('hasOptionsPlaceholder') || changes.hasOwnProperty('noOptionsPlaceholder')) {
+				this.updatePlaceholder();
+			}
+			if (changes.hasOwnProperty('enabled')) {
+				this.onEnabledStatusChange();
+			}
 		}
 	}
 
 	/**
 	 * Implementing deep check for option comparison
+	 * FIXME: Potential performance issues.
 	 */
 	ngDoCheck(): void {
 		if (!isEqual(this._oldOptions, this.options)) {
@@ -59,16 +65,27 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	/**
 	 * Update the current placeholder based on the given input parameter.
 	 */
-	updatePlaceholder():void {
+	updatePlaceholder(): void {
 		this._selectize.settings.placeholder = this.getPlaceholder();
 		this._selectize.updatePlaceholder();
-		console.log('new placeholder: ', this._selectize.settings.placeholder);
+	}
+
+	/**
+	 * Called when a change is detected in the 'enabled' input field.
+	 * Sets the selectize state based on the new value.
+	 */
+	onEnabledStatusChange():void {
+		if (this.enabled) {
+			this._selectize.enable();
+		} else {
+			this._selectize.disable();
+		}
 	}
 
 	/**
 	 * Triggered when a change is detected with the given set of options.
 	 */
-	onSelectizeOptionsChange():void {
+	onSelectizeOptionsChange(): void {
 		this._selectize.addOption(this.options);
 		this.updatePlaceholder();
 	}
@@ -77,7 +94,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 * Dispatches change event when a value change is detected.
 	 * @param $event
 	 */
-	onSelectizeValueChange($event):void {
+	onSelectizeValueChange($event): void {
 		if (this.onValueChange != null && this.onValueChange.observers != null && this.onValueChange.observers.length > 0) {
 			this.onValueChange.emit($event);
 		}
@@ -85,11 +102,9 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 
 	/**
 	 * Returns the applicable placeholder.
-	 *
-	 * @returns {string}
 	 */
-	getPlaceholder():string {
-		var newPlaceholder:string;
+	getPlaceholder(): string {
+		var newPlaceholder: string;
 		if (this.options != null && this.options.length > 0 && this.hasOptionsPlaceholder != null && this.hasOptionsPlaceholder.length > 0) {
 			newPlaceholder = this.hasOptionsPlaceholder;
 		} else if ((this.options == null || this.options.length == 0) && (this.noOptionsPlaceholder != null && this.noOptionsPlaceholder.length > 0)) { // no options

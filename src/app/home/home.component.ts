@@ -23,21 +23,28 @@ export class HomeComponent {
 		maxItems: 1
 	};
 
+	exampleStaticOptions: ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
+		label: 'init',
+		value: 'initValue'
+	}];
+
 	multiSelectDynamicAddOptions: ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
 		label: 'init',
-		value: 'value'
+		value: 'initValue'
 	}];
 
 	singleSelectDynamicAddOptions: ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
 		label: 'init',
-		value: 'value'
+		value: 'initValue'
 	}];
 
 	hasOrDoesntHaveOptions: ExampleSelectizeOption[] = [];
 	hasOptionsPlaceholderText: string = 'Click to select options';
 	noOptionsPlaceholderText: string =  'No options available...';
 
-	onSelectizeValueChange(value) {
+	selectizeIsEnabled:boolean = true;
+
+	printValue(value) {
 		console.log("Selectize value changed: ", value)
 	}
 
@@ -63,5 +70,9 @@ export class HomeComponent {
 			label: Math.random().toString(),
 			value: Math.random()
 		});
+	}
+
+	toggleEnabledState() {
+		this.selectizeIsEnabled = !this.selectizeIsEnabled;
 	}
 }

@@ -4,7 +4,7 @@
 		   [config]="multiSelectDynamicAddConfig"
 		   [options]="multiSelectDynamicAddOptions"
 		   [placeholder]="multiSelectDynamicAddPlaceholder"
-		   (onValueChange)="onSelectizeValueChange($event)"/>
+		   (onValueChange)="printValue($event)"/>
 
 	<button (click)="addMultiSelectDynamicAddOption()">Add Option</button>
 	<input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"/>
@@ -15,7 +15,7 @@
 	<input type="text" ng2-selectize
 		   [config]="singleSelectDynamicAddConfig"
 		   [options]="singleSelectDynamicAddOptions"
-		   (onValueChange)="onSelectizeValueChange($event)"/>
+		   (onValueChange)="printValue($event)"/>
 	<button (click)="addSingleSelectDynamicAddOption()">Add Option</button>
 </div>
 
@@ -24,7 +24,7 @@
 	<input type="text" ng2-selectize
 		   [config]="multiSelectDynamicAddConfig"
 		   [options]="hasOrDoesntHaveOptions"
-		   (onValueChange)="onSelectizeValueChange($event)"
+		   (onValueChange)="printValue($event)"
 		   [noOptionsPlaceholder]="noOptionsPlaceholderText"
 		   [hasOptionsPlaceholder]="hasOptionsPlaceholderText"
 	/>
@@ -35,5 +35,21 @@
 	<div>
 		<button (click)="clearHasOrNotExample()">Clear Options</button>
 		<button (click)="addOptionsToHaveOrNotExample()">Add Options</button>
+	</div>
+</div>
+
+<div class="example">
+	<label>Dynamically update enabled/disabled state</label>
+	<input type="text" ng2-selectize
+		   #enabledDisabledValue
+		   [config]="multiSelectDynamicAddConfig"
+		   [options]="exampleStaticOptions"
+		   (onValueChange)="printValue($event)"
+		   [enabled]="selectizeIsEnabled"
+	/>
+	<div>
+		<button (click)="toggleEnabledState()">Toggle Enabled State</button>
+		<span>Is Enabled: <strong>{{selectizeIsEnabled}}</strong></span>
+		<span>Value: <strong>{{enabledDisabledValue.value}}</strong></span>
 	</div>
 </div>
