@@ -1,5 +1,5 @@
 import {Component, OnInit, OnChanges, SimpleChanges} from "@angular/core";
-import {ExampleSelectizeOption} from "../ng2-selectize.types";
+import {ExampleSelectizeOption} from "../app.types";
 
 @Component({
 	selector: 'performance',

@@ -33,4 +33,5 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 | noOptionsPlaceholder | String | Placeholder text to be displayed when no options are available | Yes |
 | hasOptionsPlaceholder | String | Placeholder text to be displayed when options are available | Yes |
 | enabled | boolean | Enables the input field when true, disabled otherwise | Yes |
-| optionGroups | Object | Organize options within groups | No |
+| optionGroups | Object | Organize options within groups | Partially (WIP) |
+| includeUncommitted | boolean | If true, the value before hitting enter will be included in the current value result. | No |

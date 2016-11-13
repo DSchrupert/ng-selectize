@@ -16,6 +16,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 
 	@Input('config') config: Selectize.IOptions<any, any>;
 	@Input('options') options: any[];
+	@Input('optionGroups') optionGroups: any[];
 	@Input('placeholder') placeholder: string;
 	@Input('hasOptionsPlaceholder') hasOptionsPlaceholder: string;
 	@Input('noOptionsPlaceholder') noOptionsPlaceholder: string;
@@ -24,7 +25,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	@Output('onValueChange') onValueChange: EventEmitter<any> = new EventEmitter(false);
 
 	_selectize: any;
-	// _selectize:Selectize.IApi<any, any>; // FIXME Selectize.IApi does not provide typings to required instance variables.
+	// _selectize:Selectize.IApi<any, any>; // FIXME Selectize.IApi does not provide typings to required instance variables (ie. settings).
 	_oldOptions: any[];
 
 	ngOnInit(): void {
@@ -32,6 +33,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		this._selectize.on('change', this.onSelectizeValueChange.bind(this));
 		this._oldOptions = cloneDeep(this.options);
 		this.onSelectizeOptionsChange();
+		this.onSelectizeOptionGroupChange();
 		if (this.placeholder != null && this.placeholder.length > 0) {
 			this.updatePlaceholder();
 		}
@@ -47,6 +49,9 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 			}
 			if (changes.hasOwnProperty('enabled')) {
 				this.onEnabledStatusChange();
+			}
+			if (changes.hasOwnProperty('optionGroups')) {
+				this.onSelectizeOptionGroupChange();
 			}
 		}
 	}
@@ -93,6 +98,17 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 			this._selectize.addOption(this.options);
 		}
 		this.updatePlaceholder();
+	}
+
+	/**
+	 * Triggered when a change is detected with the given set of option groups.
+	 */
+	onSelectizeOptionGroupChange():void {
+		if (this.optionGroups != null && this.optionGroups.length > 0) {
+			this.optionGroups.forEach((optionGroup) => {
+				this._selectize.addOptionGroup(optionGroup.id, optionGroup);
+			});
+		}
 	}
 
 	/**

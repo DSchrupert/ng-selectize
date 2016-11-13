@@ -53,3 +53,13 @@
 		<span>Value: <strong>{{enabledDisabledValue.value}}</strong></span>
 	</div>
 </div>
+
+<div class="example">
+	<label>Option groups example</label>
+	<input type="text" ng2-selectize
+		   [config]="optionGroupExampleConfig"
+		   [options]="optionGroupExampleOptions"
+		   [optionGroups]="optionGroupExampleGroups"
+		   (onValueChange)="printValue($event)"
+	/>
+</div>

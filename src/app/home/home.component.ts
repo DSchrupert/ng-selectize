@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
-import {ExampleSelectizeOption} from "../ng2-selectize.types";
+import {ExampleSelectizeOption, ExampleGroupableOption, ExampleGroup} from "../app.types";
+
 
 @Component({
 	selector: 'home',
@@ -43,6 +44,47 @@ export class HomeComponent {
 	noOptionsPlaceholderText: string =  'No options available...';
 
 	selectizeIsEnabled:boolean = true;
+
+
+	// Option groups example
+	optionGroupExampleConfig: Selectize.IOptions<any, any> = {
+		optgroupField: 'group',
+		labelField: 'label',
+		valueField: 'value',
+		render: {
+			optgroup_header: function (data, escape) {
+				return '<div class="optgroup-header">' + escape(data.data) + '</div>';
+			}
+		}
+	};
+
+	optionGroupExampleOptions: ExampleGroupableOption[] = [<ExampleGroupableOption>{
+		label: 'Red',
+		value: 'red',
+		group: 'colors'
+	},<ExampleGroupableOption>{
+		label: 'Blue',
+		value: 'blue',
+		group: 'colors'
+	},<ExampleGroupableOption>{
+		label: 'Green',
+		value: 'green',
+		group: 'colors'
+	},<ExampleGroupableOption>{
+		label: 'Dog',
+		value: 'dog',
+		group: 'animals'
+	}];
+
+	optionGroupExampleGroups: ExampleGroup[] = [
+		<ExampleGroup> {
+			id: 'colors',
+			data: 'The colors'
+		}, <ExampleGroup> {
+			id: 'animals',
+			data: 'The Animals'
+		}
+	];
 
 	printValue(value) {
 		console.log("Selectize value changed: ", value)
