@@ -24,7 +24,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	@Output('onValueChange') onValueChange: EventEmitter<any> = new EventEmitter(false);
 
 	_selectize: any;
-	// _selectize:Selectize.IApi<any, any>; // Selectize.IApi does not provide typings to required instance variables.
+	// _selectize:Selectize.IApi<any, any>; // FIXME Selectize.IApi does not provide typings to required instance variables.
 	_oldOptions: any[];
 
 	ngOnInit(): void {
@@ -86,7 +86,12 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 * Triggered when a change is detected with the given set of options.
 	 */
 	onSelectizeOptionsChange(): void {
-		this._selectize.addOption(this.options);
+		this._selectize.clearCache();
+		if (this.options == null || this.options.length == 0) {
+			this._selectize.clearOptions();
+		} else {
+			this._selectize.addOption(this.options);
+		}
 		this.updatePlaceholder();
 	}
 
