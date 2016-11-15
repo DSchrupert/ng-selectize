@@ -6,8 +6,8 @@
 		   [placeholder]="multiSelectDynamicAddPlaceholder"
 		   (onValueChange)="printValue($event)"/>
 
-	<button (click)="addMultiSelectDynamicAddOption()">Add Option</button>
-	<input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"/>
+	<button md-raised-button (click)="addMultiSelectDynamicAddOption()">Add Option</button>
+	<md-input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"></md-input>
 </div>
 
 <div class="example">
@@ -16,7 +16,7 @@
 		   [config]="singleSelectDynamicAddConfig"
 		   [options]="singleSelectDynamicAddOptions"
 		   (onValueChange)="printValue($event)"/>
-	<button (click)="addSingleSelectDynamicAddOption()">Add Option</button>
+	<button md-raised-button (click)="addSingleSelectDynamicAddOption()">Add Option</button>
 </div>
 
 <div class="example">
@@ -29,12 +29,12 @@
 		   [hasOptionsPlaceholder]="hasOptionsPlaceholderText"
 	/>
 	<label>Placeholder when has options:</label>
-	<input type="text" [(ngModel)]="hasOptionsPlaceholderText"/>
+	<md-input type="text" [(ngModel)]="hasOptionsPlaceholderText"></md-input><br />
 	<label>Placeholder when no options:</label>
-	<input type="text" [(ngModel)]="noOptionsPlaceholderText"/>
+	<md-input type="text" [(ngModel)]="noOptionsPlaceholderText"></md-input><br />
 	<div>
-		<button (click)="clearHasOrNotExample()">Clear Options</button>
-		<button (click)="addOptionsToHaveOrNotExample()">Add Options</button>
+		<button md-raised-button (click)="clearHasOrNotExample()">Clear Options</button>
+		<button md-raised-button (click)="addOptionsToHaveOrNotExample()">Add Options</button>
 	</div>
 </div>
 
@@ -48,7 +48,7 @@
 		   [enabled]="selectizeIsEnabled"
 	/>
 	<div>
-		<button (click)="toggleEnabledState()">Toggle Enabled State</button>
+		<button md-raised-button (click)="toggleEnabledState()">Toggle Enabled State</button>
 		<span>Is Enabled: <strong>{{selectizeIsEnabled}}</strong></span>
 		<span>Value: <strong>{{enabledDisabledValue.value}}</strong></span>
 	</div>
