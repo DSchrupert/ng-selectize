@@ -9,6 +9,7 @@ import {MaterialModule, MdIconRegistry} from "@angular/material";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {PerformanceComponent} from "./performance/performance.component";
+import {ButtonsModule} from "ng2-bootstrap";
 
 @NgModule({
 	declarations: [AppComponent, HomeComponent, PerformanceComponent, Ng2SelectizeDirective],
@@ -20,7 +21,8 @@ import {PerformanceComponent} from "./performance/performance.component";
 		RouterModule.forRoot([
 			{path: 'performance', component: PerformanceComponent},
 			{path: '', component: HomeComponent}
-		])
+		]),
+		ButtonsModule
 	],
 	providers: [MdIconRegistry],
 	bootstrap: [AppComponent]
