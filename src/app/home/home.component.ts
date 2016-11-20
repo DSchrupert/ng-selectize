@@ -10,7 +10,7 @@ import {ExampleSelectizeOption, ExampleGroupableOption, ExampleGroup} from "../a
 	styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-	multiSelectDynamicAddConfig: Selectize.IOptions<any, any> = {
+	multiSelectDynamicAddConfig: Selectize.IOptions<any, any> = <Selectize.IOptions<any, any>>{
 		persist: true,
 		labelField: 'label',
 		valueField: 'value',
@@ -19,7 +19,7 @@ export class HomeComponent {
 
 	multiSelectDynamicAddPlaceholder: string = "Placeholder...";
 
-	singleSelectDynamicAddConfig: Selectize.IOptions<any, any> = {
+	singleSelectDynamicAddConfig: Selectize.IOptions<any, any> = <Selectize.IOptions<any, any>>{
 		persist: true,
 		labelField: 'label',
 		valueField: 'value',
