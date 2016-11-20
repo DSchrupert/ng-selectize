@@ -6,11 +6,9 @@
 		   [placeholder]="multiSelectDynamicAddPlaceholder"
 		   (onValueChange)="printValue($event)"/>
 	<div class="form-inline">
-		<div class="form-group">
-			<button class="btn btn-primary" (click)="addMultiSelectDynamicAddOption()">Add Option</button>
-		</div>
-		<div class="form-group">
-			<input type="text" class="form-control" [(ngModel)]="multiSelectDynamicAddPlaceholder" />
+		<button class="ui primary button" (click)="addMultiSelectDynamicAddOption()">Add Option</button>
+		<div class="ui input">
+			<input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"/>
 		</div>
 	</div>
 </div>
@@ -21,7 +19,7 @@
 		   [config]="singleSelectDynamicAddConfig"
 		   [options]="singleSelectDynamicAddOptions"
 		   (onValueChange)="printValue($event)"/>
-	<button class="btn btn-primary" (click)="addSingleSelectDynamicAddOption()">Add Option</button>
+	<button class="ui primary button" (click)="addSingleSelectDynamicAddOption()">Add Option</button>
 </div>
 
 <div class="example">
@@ -33,24 +31,23 @@
 		   [noOptionsPlaceholder]="noOptionsPlaceholderText"
 		   [hasOptionsPlaceholder]="hasOptionsPlaceholderText"
 	/>
-	<div class="form-horizontal">
-		<div class="form-group">
-			<label class="control-label col-xs-5 col-sm-5 col-md-5 col-lg-5">Placeholder when has options:</label>
-			<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-				<input type="text" class="form-control" [(ngModel)]="hasOptionsPlaceholderText" />
+	<div class="ui grid">
+		<div class="seven wide column">Placeholder when has options:</div>
+		<div class="nine wide column">
+			<div class="ui input" style="width:100%;">
+				<input type="text" [(ngModel)]="hasOptionsPlaceholderText"/>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="control-label col-xs-5 col-sm-5 col-md-5 col-lg-5">Placeholder when no options:</label>
-			<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-				<input type="text" class="form-control" [(ngModel)]="noOptionsPlaceholderText" />
+
+		<div class="seven wide column">Placeholder when no options:</div>
+		<div class="nine wide column">
+			<div class="ui input" style="width:100%;">
+				<input type="text" [(ngModel)]="noOptionsPlaceholderText"/>
 			</div>
 		</div>
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<button class="btn btn-primary" (click)="addOptionsToHaveOrNotExample()">Add Option</button>
-				<button class="btn btn-secondary" (click)="clearHasOrNotExample()">Clear Options</button>
-			</div>
+		<div class="sixteen wide column">
+			<button class="ui primary button" (click)="addOptionsToHaveOrNotExample()">Add Option</button>
+			<button class="ui button" (click)="clearHasOrNotExample()">Clear Options</button>
 		</div>
 	</div>
 </div>
@@ -65,7 +62,7 @@
 		   [enabled]="selectizeIsEnabled"
 	/>
 	<div>
-		<button class="btn btn-primary" (click)="toggleEnabledState()">Toggle Enabled State</button>
+		<button class="ui primary button" (click)="toggleEnabledState()">Toggle Enabled State</button>
 		<span>Is Enabled: <strong>{{selectizeIsEnabled}}</strong></span>
 		<span>Value: <strong>{{enabledDisabledValue.value}}</strong></span>
 	</div>

@@ -1,7 +1,11 @@
+/// <reference path="../../../typings/globals/jquery/index.d.ts" />
+/// <reference path="../../../typings/globals/selectize/index.d.ts" />
+
 import {
 	Directive, ElementRef, Renderer, Input, OnInit, Output, EventEmitter, OnChanges,
 	SimpleChanges, DoCheck, SimpleChange
 } from '@angular/core';
+
 var cloneDeep = require('lodash.clonedeep');
 var isEqual = require('lodash.isequal');
 
@@ -12,7 +16,6 @@ require('selectize');
 	selector: '[ng2-selectize]'
 })
 export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
-
 
 	@Input('config') config: Selectize.IOptions<any, any>;
 	@Input('options') options: any[];

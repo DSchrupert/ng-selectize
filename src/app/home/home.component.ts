@@ -1,6 +1,8 @@
+/// <reference path="../../../typings/globals/jquery/index.d.ts" />
+/// <reference path="../../../typings/globals/selectize/index.d.ts" />
+
 import {Component} from "@angular/core";
 import {ExampleSelectizeOption, ExampleGroupableOption, ExampleGroup} from "../app.types";
-
 
 @Component({
 	selector: 'home',
@@ -47,7 +49,7 @@ export class HomeComponent {
 
 
 	// Option groups example
-	optionGroupExampleConfig: Selectize.IOptions<any, any> = {
+	optionGroupExampleConfig: Selectize.IOptions<any, any> = <Selectize.IOptions<any, any>>{
 		optgroupField: 'group',
 		labelField: 'label',
 		valueField: 'value',
