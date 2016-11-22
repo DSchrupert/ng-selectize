@@ -36,7 +36,6 @@
     "@angular/core": "~2.1.0",
     "@angular/forms": "~2.1.0",
     "@angular/http": "~2.1.0",
-    "@angular/material": "^2.0.0-alpha.10",
     "@angular/platform-browser": "~2.1.0",
     "@angular/platform-browser-dynamic": "~2.1.0",
     "@angular/router": "~3.1.0",
@@ -51,6 +50,7 @@
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
+    "@types/jquery": "^2.0.34",
     "@types/node": "^6.0.48",
     "@types/selectize": "^0.12.28",
     "angular-cli": "1.0.0-beta.19-3",
