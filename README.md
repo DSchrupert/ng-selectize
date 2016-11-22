@@ -4,7 +4,7 @@
 
 Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 
-[Hosted Example Site](http://http://nicholasazar.github.io/)
+[Hosted Example Site](http://nicholasazar.github.io/)
 
 ## Including within existing angular-cli project
 
