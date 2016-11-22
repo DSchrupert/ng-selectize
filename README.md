@@ -4,6 +4,8 @@
 
 Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 
+[Hosted Example Site](http://http://nicholasazar.github.io/)
+
 ## Including within existing angular-cli project
 
 1. `npm i --save jquery selectize ng2-selectize`
