@@ -1,5 +1,4 @@
-/// <reference path="../../../typings/globals/jquery/index.d.ts" />
-/// <reference path="../../../typings/globals/selectize/index.d.ts" />
+//// <reference path="../../../typings/globals/selectize/index.d.ts" />
 
 import {
 	Directive, ElementRef, Renderer, Input, OnInit, Output, EventEmitter, OnChanges,
@@ -30,11 +29,13 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	_selectize: any;
 	// _selectize:Selectize.IApi<any, any>; // FIXME Selectize.IApi does not provide typings to required instance variables (ie. settings).
 	_oldOptions: any[];
+	_oldOptionGroups: any[];
 
 	ngOnInit(): void {
 		this._selectize = $(this.el.nativeElement).selectize(this.config)[0].selectize;
 		this._selectize.on('change', this.onSelectizeValueChange.bind(this));
 		this._oldOptions = cloneDeep(this.options);
+		this._oldOptionGroups = cloneDeep(this.optionGroups);
 		this.onSelectizeOptionsChange();
 		this.onSelectizeOptionGroupChange();
 		if (this.placeholder != null && this.placeholder.length > 0) {
@@ -53,9 +54,6 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 			if (changes.hasOwnProperty('enabled')) {
 				this.onEnabledStatusChange();
 			}
-			if (changes.hasOwnProperty('optionGroups')) {
-				this.onSelectizeOptionGroupChange();
-			}
 		}
 	}
 
@@ -67,6 +65,10 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		if (!isEqual(this._oldOptions, this.options)) {
 			this.onSelectizeOptionsChange();
 			this._oldOptions = cloneDeep(this.options);
+		}
+		if (!isEqual(this._oldOptionGroups, this.optionGroups)) {
+			this.onSelectizeOptionGroupChange();
+			this._oldOptionGroups = cloneDeep(this.optionGroups);
 		}
 	}
 
