@@ -44,6 +44,7 @@
     "ng2-selectize": "0.0.15",
     "rxjs": "5.0.0-beta.12",
     "selectize": "^0.12.4",
+    "semantic-ui-css": "^2.2.4",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23"
   },
