@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/globals/selectize/index.d.ts" />
 
-import {Component} from "@angular/core";
+import {Component} from '@angular/core';
 import {ExampleSelectizeOption, ExampleGroupableOption, ExampleGroup} from "../app.types";
 
 @Component({

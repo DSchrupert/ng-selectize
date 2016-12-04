@@ -18,8 +18,9 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
    `imports: [..., Ng2SelectizeModule, ...],`
 4. Use within template: `<input type="text" ng2-selectize {attributes}/>`
  
-## Running the example
+## Running the demo
  ```
+ cd demo
  npm i
  ng serve
  // Navigate to localhost:4200
