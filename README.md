@@ -14,7 +14,7 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
     `"../node_modules/selectize/dist/css/selectize.{your chosen theme}.css"`
     to the styles array within `angular-cli.json`
 3. Import module within applicable @NgModule:
-   `import Ng2SelectizeModule from 'ng2-selectize';`
+   `import {Ng2SelectizeModule} from 'ng2-selectize';`
    `imports: [..., Ng2SelectizeModule, ...],`
 4. Use within template: `<input type="text" ng2-selectize {attributes}/>`
  
