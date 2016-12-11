@@ -130,7 +130,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 * Returns the applicable placeholder.
 	 */
 	getPlaceholder(): string {
-		var newPlaceholder: string;
+		let newPlaceholder: string;
 		if (this.options != null && this.options.length > 0 && this.hasOptionsPlaceholder != null && this.hasOptionsPlaceholder.length > 0) {
 			newPlaceholder = this.hasOptionsPlaceholder;
 		} else if ((this.options == null || this.options.length == 0) && (this.noOptionsPlaceholder != null && this.noOptionsPlaceholder.length > 0)) { // no options

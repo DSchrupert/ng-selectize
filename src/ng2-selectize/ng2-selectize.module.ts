@@ -9,4 +9,4 @@ import {Ng2SelectizeDirective} from "./ng2-selectize.directive";
   declarations: [Ng2SelectizeDirective],
   exports: [Ng2SelectizeDirective]
 })
-export default class Ng2SelectizeModule {}
+export class Ng2SelectizeModule {}

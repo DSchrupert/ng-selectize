@@ -7,7 +7,7 @@ import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {PerformanceComponent} from "./performance/performance.component";
-import Ng2SelectizeModule from "ng2-selectize";
+import {Ng2SelectizeModule} from '../../../src/ng2-selectize/ng2-selectize.module';
 
 @NgModule({
 	declarations: [AppComponent, HomeComponent, PerformanceComponent],
