@@ -5,11 +5,11 @@ import {
 	SimpleChanges, DoCheck, SimpleChange
 } from '@angular/core';
 
-var cloneDeep = require('lodash.clonedeep');
-var isEqual = require('lodash.isequal');
+const cloneDeep = require('lodash.clonedeep');
+const isEqual = require('lodash.isequal');
 
 let $ = require('jquery');
-require('selectize');
+require('../vendors/selectize/selectize.standalone');
 
 @Directive({
 	selector: '[ng2-selectize]'
@@ -30,6 +30,8 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	// _selectize:Selectize.IApi<any, any>; // FIXME Selectize.IApi does not provide typings to required instance variables (ie. settings).
 	_oldOptions: any[];
 	_oldOptionGroups: any[];
+
+	constructor(private el: ElementRef, private renderer: Renderer) {}
 
 	ngOnInit(): void {
 		this._selectize = $(this.el.nativeElement).selectize(this.config)[0].selectize;
@@ -141,6 +143,5 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		return newPlaceholder;
 	}
 
-	constructor(private el: ElementRef, private renderer: Renderer) {
-	}
+
 }
