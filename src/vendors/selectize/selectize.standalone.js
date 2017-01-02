@@ -1107,7 +1107,7 @@
 		if(!options) options = {};
 		var component = "Selectize";
 
-		console.error(component + ": " + message)
+		console.error(component + ": " + message);
 
 		if(options.explanation){
 			// console.group is undefined in <IE11
@@ -1115,7 +1115,7 @@
 			console.error(options.explanation);
 			if(console.group) console.groupEnd();
 		}
-	}
+	};
 
 
 	var Selectize = function($input, settings) {
@@ -1664,7 +1664,7 @@
 
 			if ((self.isFull() || self.isInputHidden) && !(IS_MAC ? e.metaKey : e.ctrlKey)) {
 				e.preventDefault();
-				return;
+
 			}
 		},
 
@@ -3873,7 +3873,7 @@
 
 		if (this.settings.mode === 'single') {
 			singleClose(this, options);
-			return;
+
 		} else {
 			multiClose(this, options);
 		}
@@ -3955,6 +3955,8 @@
 
 				if (fittedHeight) {
 					this.$dropdown_content.css({ 'max-height' : fittedHeight });
+				} else {
+					this.$dropdown_content.css({ 'max-height' : '' });
 				}
 
 				this.$dropdown.css({
