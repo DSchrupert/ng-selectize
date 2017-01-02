@@ -1,6 +1,7 @@
 export interface ExampleSelectizeOption {
 	label: string;
-	value: any;
+	value: string;
+	code: string;
 }
 
 export interface ExampleGroupableOption extends ExampleSelectizeOption{

@@ -1,21 +1,26 @@
 //// <reference path="../../../typings/globals/selectize/index.d.ts" />
 
-import {
-	Directive, ElementRef, Renderer, Input, OnInit, Output, EventEmitter, OnChanges,
-	SimpleChanges, DoCheck, SimpleChange
-} from '@angular/core';
+import {Input, OnInit, OnChanges, SimpleChanges, DoCheck, forwardRef, Component, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {NG_VALUE_ACCESSOR, ControlValueAccessor} from "@angular/forms";
+import {noop} from "rxjs/util/noop";
 
 const cloneDeep = require('lodash.clonedeep');
 const isEqual = require('lodash.isequal');
-
 let $ = require('jquery');
 require('../vendors/selectize/selectize.standalone');
 
-@Directive({
-	selector: '[ng2-selectize]'
-})
-export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
+const SELECTIZE_CONTROL_VALUE_ACCESSOR: any = {
+	provide: NG_VALUE_ACCESSOR,
+	useExisting: forwardRef(() => Ng2SelectizeComponent),
+	multi: true
+};
 
+@Component({
+	selector: 'ng2-selectize',
+	template: `<select #selectizeInput></select>`,
+	providers: [SELECTIZE_CONTROL_VALUE_ACCESSOR]
+})
+export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, ControlValueAccessor {
 	@Input('config') config: Selectize.IOptions<any, any>;
 	@Input('options') options: any[];
 	@Input('optionGroups') optionGroups: any[];
@@ -24,17 +29,21 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	@Input('noOptionsPlaceholder') noOptionsPlaceholder: string;
 	@Input('enabled') enabled: boolean;
 
-	@Output('onValueChange') onValueChange: EventEmitter<any> = new EventEmitter(false);
+	@ViewChild('selectizeInput') selectizeInput:any;
 
-	_selectize: any;
-	// _selectize:Selectize.IApi<any, any>; // FIXME Selectize.IApi does not provide typings to required instance variables (ie. settings).
-	_oldOptions: any[];
-	_oldOptionGroups: any[];
+	private _selectize: any;
+	private _oldOptions: any[];
+	private _oldOptionGroups: any[];
 
-	constructor(private el: ElementRef, private renderer: Renderer) {}
+	// Control value accessors.
+	private onTouchedCallback: () => void = noop;
+	private onChangeCallback: (_: any) => void = noop;
+	private _value:string[];
+
+	constructor(private cdr:ChangeDetectorRef) {}
 
 	ngOnInit(): void {
-		this._selectize = $(this.el.nativeElement).selectize(this.config)[0].selectize;
+		this._selectize = $(this.selectizeInput.nativeElement).selectize(this.config)[0].selectize;
 		this._selectize.on('change', this.onSelectizeValueChange.bind(this));
 		this._oldOptions = cloneDeep(this.options);
 		this._oldOptionGroups = cloneDeep(this.optionGroups);
@@ -67,6 +76,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		if (!isEqual(this._oldOptions, this.options)) {
 			this.onSelectizeOptionsChange();
 			this._oldOptions = cloneDeep(this.options);
+			this.cdr.detectChanges();
 		}
 		if (!isEqual(this._oldOptionGroups, this.optionGroups)) {
 			this.onSelectizeOptionGroupChange();
@@ -99,9 +109,8 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 */
 	onSelectizeOptionsChange(): void {
 		this._selectize.clearCache();
-		if (this.options == null || this.options.length == 0) {
-			this._selectize.clearOptions();
-		} else {
+		this._selectize.clearOptions();
+		if (this.options && this.options.length > 0) {
 			this._selectize.addOption(this.options);
 		}
 		this.updatePlaceholder();
@@ -123,9 +132,7 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 	 * @param $event
 	 */
 	onSelectizeValueChange($event): void {
-		if (this.onValueChange != null && this.onValueChange.observers != null && this.onValueChange.observers.length > 0) {
-			this.onValueChange.emit($event);
-		}
+		this.value = $event;
 	}
 
 	/**
@@ -143,5 +150,48 @@ export class Ng2SelectizeDirective implements OnInit, OnChanges, DoCheck {
 		return newPlaceholder;
 	}
 
+	/**
+	 * Implementation from ControlValueAccessor
+	 * @param obj
+	 */
+	writeValue(obj: any): void {
+		if (obj && obj !== this._value) {
+			this._value = obj;
+		}
+	}
 
+	/**
+	 * Implementation from ControlValueAccessor, callback for (ngModelChange)
+	 * @param fn
+	 */
+	registerOnChange(fn: any): void {
+		this.onChangeCallback = fn;
+	}
+
+	/**
+	 * Implementation from ControlValueAccessor
+	 * @param fn
+	 */
+	registerOnTouched(fn: any): void {
+		this.onTouchedCallback = fn;
+	}
+
+	/**
+	 * Expose selectize instance variable.
+	 * @returns {any}
+	 */
+	get selectize():any {
+		return this._selectize;
+	}
+
+	get value():string[] {
+		return this._value;
+	}
+
+	set value(value:string[]) {
+		if (value !== this._value) {
+			this._value = value;
+			this.onChangeCallback(value);
+		}
+	}
 }

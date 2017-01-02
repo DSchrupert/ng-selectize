@@ -2,6 +2,12 @@
 
 import {Component} from '@angular/core';
 import {ExampleSelectizeOption, ExampleGroupableOption, ExampleGroup} from "../app.types";
+import {SingleSelectConfig, ExampleValues_Frameworks,
+	ExampleValues_Colors, ExampleGroups_Colors, Example_Placeholder_HasOptions,
+	Example_Placeholder_NoOptions
+} from "../selectize.configs";
+
+const _cloneDeep = require('lodash.clonedeep');
 
 @Component({
 	selector: 'home',
@@ -9,40 +15,17 @@ import {ExampleSelectizeOption, ExampleGroupableOption, ExampleGroup} from "../a
 	styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-	multiSelectDynamicAddConfig: Selectize.IOptions<any, any> = <Selectize.IOptions<any, any>>{
-		persist: true,
-		labelField: 'label',
-		valueField: 'value',
-		plugins: ['remove_button']
-	};
+	singleSelectDynamicAddConfig: Selectize.IOptions<any, any> = SingleSelectConfig;
 
-	multiSelectDynamicAddPlaceholder: string = "Placeholder...";
+	exampleStaticOptions: ExampleSelectizeOption[] = _cloneDeep(ExampleValues_Frameworks);
 
-	singleSelectDynamicAddConfig: Selectize.IOptions<any, any> = <Selectize.IOptions<any, any>>{
-		persist: true,
-		labelField: 'label',
-		valueField: 'value',
-		maxItems: 1
-	};
 
-	exampleStaticOptions: ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
-		label: 'init',
-		value: 'initValue'
-	}];
 
-	multiSelectDynamicAddOptions: ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
-		label: 'init',
-		value: 'initValue'
-	}];
-
-	singleSelectDynamicAddOptions: ExampleSelectizeOption[] = [<ExampleSelectizeOption>{
-		label: 'init',
-		value: 'initValue'
-	}];
+	singleSelectDynamicAddOptions: ExampleSelectizeOption[] = _cloneDeep(ExampleValues_Frameworks);
 
 	hasOrDoesntHaveOptions: ExampleSelectizeOption[] = [];
-	hasOptionsPlaceholderText: string = 'Click to select options';
-	noOptionsPlaceholderText: string =  'No options available...';
+	hasOptionsPlaceholderText: string = _cloneDeep(Example_Placeholder_HasOptions);
+	noOptionsPlaceholderText: string = _cloneDeep(Example_Placeholder_NoOptions);
 
 	selectizeIsEnabled:boolean = true;
 
@@ -59,49 +42,20 @@ export class HomeComponent {
 		}
 	};
 
-	optionGroupExampleOptions: ExampleGroupableOption[] = [<ExampleGroupableOption>{
-		label: 'Red',
-		value: 'red',
-		group: 'colors'
-	},<ExampleGroupableOption>{
-		label: 'Blue',
-		value: 'blue',
-		group: 'colors'
-	},<ExampleGroupableOption>{
-		label: 'Green',
-		value: 'green',
-		group: 'colors'
-	},<ExampleGroupableOption>{
-		label: 'Dog',
-		value: 'dog',
-		group: 'animals'
-	}];
+	optionGroupExampleOptions: ExampleGroupableOption[] = ExampleValues_Colors;
 
-	optionGroupExampleGroups: ExampleGroup[] = [
-		<ExampleGroup> {
-			id: 'colors',
-			data: 'The colors'
-		}, <ExampleGroup> {
-			id: 'animals',
-			data: 'The Animals'
-		}
-	];
+	optionGroupExampleGroups: ExampleGroup[] = ExampleGroups_Colors;
+
 
 	printValue(value) {
 		console.log("Selectize value changed: ", value)
 	}
 
-	addMultiSelectDynamicAddOption() {
-		this.multiSelectDynamicAddOptions.push(<ExampleSelectizeOption>{
-			label: Math.random().toString(),
-			value: Math.random()
-		});
-	}
-
 	addSingleSelectDynamicAddOption() {
 		this.singleSelectDynamicAddOptions.push(<ExampleSelectizeOption>{
 			label: Math.random().toString(),
-			value: Math.random()
+			value: Math.random().toString(),
+			code: Math.random().toString()
 		});
 	}
 
@@ -111,7 +65,8 @@ export class HomeComponent {
 	addOptionsToHaveOrNotExample() {
 		this.hasOrDoesntHaveOptions.push(<ExampleSelectizeOption>{
 			label: Math.random().toString(),
-			value: Math.random()
+			value: Math.random().toString(),
+			code: Math.random().toString()
 		});
 	}
 

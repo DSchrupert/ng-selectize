@@ -1,36 +1,23 @@
 <div class="example">
-	<label>Dynamically add options to <strong>Multi</strong> select: </label>
-	<input type="text" ng2-selectize
-		   [config]="multiSelectDynamicAddConfig"
-		   [options]="multiSelectDynamicAddOptions"
-		   [placeholder]="multiSelectDynamicAddPlaceholder"
-		   (onValueChange)="printValue($event)"/>
-	<div class="form-inline">
-		<button class="ui primary button" (click)="addMultiSelectDynamicAddOption()">Add Option</button>
-		<div class="ui input">
-			<input type="text" [(ngModel)]="multiSelectDynamicAddPlaceholder"/>
-		</div>
-	</div>
+	<multi-select-example></multi-select-example>
+
 </div>
 
 <div class="example">
 	<label>Dynamically add options to <strong>Single</strong> select</label>
-	<input type="text" ng2-selectize
+	<ng2-selectize
 		   [config]="singleSelectDynamicAddConfig"
-		   [options]="singleSelectDynamicAddOptions"
-		   (onValueChange)="printValue($event)"/>
+		   [options]="singleSelectDynamicAddOptions"></ng2-selectize>
 	<button class="ui primary button" (click)="addSingleSelectDynamicAddOption()">Add Option</button>
 </div>
 
 <div class="example">
 	<label>Preset placeholders for hasOptions/noOptions state</label>
-	<input type="text" ng2-selectize
+	<ng2-selectize
 		   [config]="multiSelectDynamicAddConfig"
 		   [options]="hasOrDoesntHaveOptions"
-		   (onValueChange)="printValue($event)"
 		   [noOptionsPlaceholder]="noOptionsPlaceholderText"
-		   [hasOptionsPlaceholder]="hasOptionsPlaceholderText"
-	/>
+		   [hasOptionsPlaceholder]="hasOptionsPlaceholderText"></ng2-selectize>
 	<div class="ui grid">
 		<div class="seven wide column">Placeholder when has options:</div>
 		<div class="nine wide column">
@@ -54,13 +41,10 @@
 
 <div class="example">
 	<label>Dynamically update enabled/disabled state</label>
-	<input type="text" ng2-selectize
-		   #enabledDisabledValue
+	<ng2-selectize #enabledDisabledValue
 		   [config]="multiSelectDynamicAddConfig"
 		   [options]="exampleStaticOptions"
-		   (onValueChange)="printValue($event)"
-		   [enabled]="selectizeIsEnabled"
-	/>
+		   [enabled]="selectizeIsEnabled"></ng2-selectize>
 	<div>
 		<button class="ui primary button" (click)="toggleEnabledState()">Toggle Enabled State</button>
 		<span>Is Enabled: <strong>{{selectizeIsEnabled}}</strong></span>
@@ -70,10 +54,12 @@
 
 <div class="example">
 	<label>Option groups example</label>
-	<input type="text" ng2-selectize
-		   [config]="optionGroupExampleConfig"
+	<ng2-selectize [config]="optionGroupExampleConfig"
 		   [options]="optionGroupExampleOptions"
-		   [optionGroups]="optionGroupExampleGroups"
-		   (onValueChange)="printValue($event)"
-	/>
+		   [optionGroups]="optionGroupExampleGroups"></ng2-selectize>
+</div>
+
+
+<div class="example">
+	<form-example></form-example>
 </div>

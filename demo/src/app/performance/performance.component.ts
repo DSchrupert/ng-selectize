@@ -29,13 +29,14 @@ export class PerformanceComponent implements OnInit {
 	}
 
 	generateRandomOptions(): ExampleSelectizeOption[] {
-		var list: ExampleSelectizeOption[] = [];
-		for (var i = 0; i < this.optionsLength; i++) {
+		const list: ExampleSelectizeOption[] = [];
+		for (let i = 0; i < this.optionsLength; i++) {
 
-			var randomNumber = Math.floor((Math.random() * this.optionsLength) + 1);
-			var option: ExampleSelectizeOption = <ExampleSelectizeOption>{
+			const randomNumber = Math.floor((Math.random() * this.optionsLength) + 1);
+			const option: ExampleSelectizeOption = <ExampleSelectizeOption>{
 				label: randomNumber.toString(),
-				value: randomNumber
+				value: randomNumber.toString(),
+				code: randomNumber.toString()
 			};
 			list.push(option);
 		}

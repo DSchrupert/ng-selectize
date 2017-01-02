@@ -1,0 +1,30 @@
+<h2>Form Example</h2>
+<div class="ui segment">
+	<form class="ui form" [formGroup]="formGroupExample">
+		<div class="required field">
+			<label>Name:</label>
+			<div class="two fields">
+				<div class="required field"><input placeholder="First Name" formControlName="firstName"></div>
+				<div class="required field"><input placeholder="Last Name" formControlName="lastName"></div>
+			</div>
+		</div>
+		<div class="two fields">
+			<div class="required field">
+				<label>Required Dropdown:</label>
+				<ng2-selectize formControlName="requiredDropdownExample" [config]="requiredDropdownConfig" [options]="requiredDropdownOptions" [hasOptionsPlaceholder]="'Click to select...'" ngDefaultControl></ng2-selectize>
+			</div>
+			<div class="field">
+				<label>Other Field:</label>
+				<input type="text" placeholder="Other field...">
+			</div>
+		</div>
+		<div class="ui grid">
+			<div class="sixteen wide column" style="text-align: right;">
+				<div class="ui teal right labeled icon submit button" [ngClass]="{'disabled': !formGroupExample.valid}">
+					Submit
+					<i class="checkmark icon"></i>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

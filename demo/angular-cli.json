@@ -24,7 +24,8 @@
 				"../node_modules/selectize/dist/css/selectize.bootstrap3.css"
 			],
 			"scripts": [
-				"../node_modules/semantic-ui-css/semantic.js"
+				"../node_modules/jquery/dist/jquery.min.js",
+				"../node_modules/semantic-ui-css/semantic.min.js"
 			],
 			"environments": {
 				"source": "environments/environment.ts",

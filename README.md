@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/ng2-selectize.svg)](https://badge.fury.io/js/ng2-selectize)
 
-Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
+Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
 
 [Hosted Example Site](http://nicholasazar.github.io/)
 
@@ -16,7 +16,7 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 3. Import module within applicable @NgModule:
    `import {Ng2SelectizeModule} from 'ng2-selectize';`
    `imports: [..., Ng2SelectizeModule, ...],`
-4. Use within template: `<input type="text" ng2-selectize {attributes}/>`
+4. Use within template: `<ng2-selectize {attributes}></ng2-selectize>`
  
 ## Running the demo
  ```
@@ -31,7 +31,6 @@ Angular2 directive for [selectize.js](https://selectize.github.io/selectize.js/)
 | --- | --- | --- | --- |
 | config | Object | Selectize config | Yes |
 | options | Array | Available options to select from | Yes |
-| onValueChange | Function | Callback function when value changes | Yes |
 | placeholder | String | Placeholder text to be displayed. Is overridden if hasOptionsPlaceholder/noOptionsPlaceholder are non-null | Yes |
 | noOptionsPlaceholder | String | Placeholder text to be displayed when no options are available | Yes |
 | hasOptionsPlaceholder | String | Placeholder text to be displayed when options are available | Yes |

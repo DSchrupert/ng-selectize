@@ -3,10 +3,10 @@
  */
 
 import {NgModule} from '@angular/core';
-import {Ng2SelectizeDirective} from "./ng2-selectize.directive";
+import {Ng2SelectizeComponent} from "./ng2-selectize.component";
 
 @NgModule({
-  declarations: [Ng2SelectizeDirective],
-  exports: [Ng2SelectizeDirective]
+  declarations: [Ng2SelectizeComponent],
+  exports: [Ng2SelectizeComponent]
 })
 export class Ng2SelectizeModule {}
