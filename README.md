@@ -27,12 +27,19 @@ Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
  ```
  
 ## Attributes
-| Attribute | Type | Description | Implemented |
-| --- | --- | --- | --- |
-| config | Object | Selectize config | Yes |
-| options | Array | Available options to select from | Yes |
-| placeholder | String | Placeholder text to be displayed. Is overridden if hasOptionsPlaceholder/noOptionsPlaceholder are non-null | Yes |
-| noOptionsPlaceholder | String | Placeholder text to be displayed when no options are available | Yes |
-| hasOptionsPlaceholder | String | Placeholder text to be displayed when options are available | Yes |
-| enabled | boolean | Enables the input field when true, disabled otherwise | Yes |
-| optionGroups | Object | Organize options within groups | Yes |
+| Attribute | Type | Default | Description | Implemented |
+| --- | --- | --- | --- | --- |
+| config | Object | null | Selectize config | Yes |
+| options | Array | null | Available options to select from | Yes |
+| placeholder | String | '' | Placeholder text to be displayed. Is overridden if hasOptionsPlaceholder/noOptionsPlaceholder are non-null | Yes |
+| noOptionsPlaceholder | String | '' | Placeholder text to be displayed when no options are available | Yes |
+| hasOptionsPlaceholder | String | '' | Placeholder text to be displayed when options are available | Yes |
+| enabled | Boolean | true | Enables the input field when true, disabled otherwise | Yes |
+| optionGroups | Object | null | Organize options within groups | Yes |
+| clearItemsOnOptionChanges | Boolean | true | If true, items will be deselected when a change in options is detected. Otherwise, selected options will be maintained if they still exist in the new options. | No |
+
+## Included Selectize Plugins
+| Name | Options | Description |
+| --- | --- | --- |
+| dropdown_direction | {'auto', 'up', 'down'} | Control the direction in which the dropdown opens. |
+

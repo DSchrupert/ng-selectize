@@ -1,6 +1,15 @@
 //// <reference path="../../../typings/globals/selectize/index.d.ts" />
-
-import {Input, OnInit, OnChanges, SimpleChanges, DoCheck, forwardRef, Component, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {
+	Input,
+	OnInit,
+	OnChanges,
+	SimpleChanges,
+	DoCheck,
+	forwardRef,
+	Component,
+	ViewChild,
+	ChangeDetectorRef
+} from "@angular/core";
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from "@angular/forms";
 import {noop} from "rxjs/util/noop";
 
@@ -9,7 +18,7 @@ const isEqual = require('lodash.isequal');
 let $ = require('jquery');
 require('../vendors/selectize/selectize.standalone');
 
-const SELECTIZE_CONTROL_VALUE_ACCESSOR: any = {
+export const SELECTIZE_VALUE_ACCESSOR: any = {
 	provide: NG_VALUE_ACCESSOR,
 	useExisting: forwardRef(() => Ng2SelectizeComponent),
 	multi: true
@@ -18,7 +27,7 @@ const SELECTIZE_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
 	selector: 'ng2-selectize',
 	template: `<select #selectizeInput></select>`,
-	providers: [SELECTIZE_CONTROL_VALUE_ACCESSOR]
+	providers: [SELECTIZE_VALUE_ACCESSOR]
 })
 export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, ControlValueAccessor {
 	@Input('config') config: Selectize.IOptions<any, any>;
@@ -38,20 +47,28 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	// Control value accessors.
 	private onTouchedCallback: () => void = noop;
 	private onChangeCallback: (_: any) => void = noop;
-	private _value:string[];
+	@Input('ngModel') _value:string[];
 
 	constructor(private cdr:ChangeDetectorRef) {}
 
 	ngOnInit(): void {
 		this._selectize = $(this.selectizeInput.nativeElement).selectize(this.config)[0].selectize;
 		this._selectize.on('change', this.onSelectizeValueChange.bind(this));
-		this._oldOptions = cloneDeep(this.options);
-		this._oldOptionGroups = cloneDeep(this.optionGroups);
+
 		this.onSelectizeOptionsChange();
 		this.onSelectizeOptionGroupChange();
-		if (this.placeholder != null && this.placeholder.length > 0) {
+		if (this.placeholder && this.placeholder.length > 0) {
 			this.updatePlaceholder();
 		}
+
+		if (this.value && this.value.length > 0) {
+			this.value.forEach((item) => {
+				this.selectize.addItem(item, false);
+			});
+			this.selectize.refreshItems();
+		}
+		this._oldOptions = cloneDeep(this.options);
+		this._oldOptionGroups = cloneDeep(this.optionGroups);
 	}
 
 	/**
@@ -70,7 +87,6 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 
 	/**
 	 * Implementing deep check for option comparison
-	 * FIXME: Potential performance issues.
 	 */
 	ngDoCheck(): void {
 		if (!isEqual(this._oldOptions, this.options)) {
@@ -106,6 +122,8 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 
 	/**
 	 * Triggered when a change is detected with the given set of options.
+	 * FIXME Current functionality is to clear dropdown when option changes are detected. A better idea is to maintain selected items if they haven't been removed.
+	 * FIXME https://github.com/NicholasAzar/ng2-selectize/issues/11
 	 */
 	onSelectizeOptionsChange(): void {
 		this._selectize.clearCache();

@@ -1,0 +1,25 @@
+<div class="example">
+	<label>Single select dropdown with <strong>preset value</strong> select: </label>
+	<ng2-selectize [config]="singleSelectConfig" [options]="singleSelectOptions" [placeholder]="placeholder"
+				   [(ngModel)]="singleSelectValue" ngDefaultControl></ng2-selectize>
+	<div class="form-inline">
+		<div class="ui segment">
+			<p>Current value: {{singleSelectValue | json}}</p>
+		</div>
+	</div>
+</div>
+
+
+<div class="example">
+	<label>Multi select dropdown with <strong>preset value</strong> select: </label>
+	<ng2-selectize [config]="multiSelectConfig" [options]="multiSelectOptions" [placeholder]="placeholder"
+				   [(ngModel)]="multiSelectValue" ngDefaultControl></ng2-selectize>
+	<div class="form-inline">
+		<div class="ui segment">
+			<p>Current value: {{multiSelectValue | json}}</p>
+		</div>
+	</div>
+</div>
+
+
+

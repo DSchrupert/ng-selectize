@@ -1,5 +1,5 @@
 <label>Dynamically add options to <strong>Multi</strong> select: </label>
-<ng2-selectize [config]="config" [options]="options" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="onValueChange($event)"></ng2-selectize>
+<ng2-selectize [config]="config" [options]="options" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="onValueChange($event)" ngDefaultControl></ng2-selectize>
 <div class="form-inline">
 	<!--<add-option (addedOption)="addMultiSelectDynamicAddOption($event)" [fieldId]="'addMultiSelectDynamicOption'"></add-option>-->
 	<button class="ui primary button" (click)="addRandomOption()">Add Option</button>

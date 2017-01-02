@@ -1,18 +1,18 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-
-import {AppComponent} from './app.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {PerformanceComponent} from "./performance/performance.component";
-import {Ng2SelectizeModule} from '../../../src/ng2-selectize/ng2-selectize.module';
+import {Ng2SelectizeModule} from "../../../src/ng2-selectize/ng2-selectize.module";
 import {AddOptionComponent} from "./add-option/add-option.component";
 import {FormExampleComponent} from "./home/form-example/formExample.component";
 import {MultiSelectExampleComponent} from "./home/multi-select-example/multiSelectExample.component";
 import {StateToggleExampleComponent} from "./home/state-toggle-example/stateToggleExample.component";
 import {PlaceholderStateExampleComponent} from "./home/placeholder-state-example/placeholderStateExample.component";
+import {PresetValueExampleComponent} from "./home/preset-value-example/presetValueExample.component";
 
 @NgModule({
 	declarations: [
@@ -23,7 +23,8 @@ import {PlaceholderStateExampleComponent} from "./home/placeholder-state-example
 		MultiSelectExampleComponent,
 		FormExampleComponent,
 		StateToggleExampleComponent,
-		PlaceholderStateExampleComponent
+		PlaceholderStateExampleComponent,
+		PresetValueExampleComponent
 	],
 	imports: [
 		BrowserModule,
@@ -32,6 +33,7 @@ import {PlaceholderStateExampleComponent} from "./home/placeholder-state-example
 		HttpModule,
 		RouterModule.forRoot([
 			{path: 'performance', component: PerformanceComponent},
+			{path: 'wip', component: PresetValueExampleComponent},
 			{path: '', component: HomeComponent}
 		]),
 		Ng2SelectizeModule // Import the ng2-selectize module.
