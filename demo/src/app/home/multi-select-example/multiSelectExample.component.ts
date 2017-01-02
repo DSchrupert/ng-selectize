@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ChangeDetectorRef} from "@angular/core";
 import {MULTI_SELECT_CONFIG} from "./multiSelectExample.config";
 import {ExampleSelectizeOption} from "../../app.types";
 import {ExampleValues_Frameworks} from "../../selectize.configs";
@@ -16,7 +16,7 @@ export class MultiSelectExampleComponent implements OnInit {
 	placeholder: string = 'Placeholder...';
 	value:string[];
 
-	constructor() {}
+	constructor(private cdr:ChangeDetectorRef) {}
 
 	ngOnInit(): void {}
 
@@ -26,6 +26,7 @@ export class MultiSelectExampleComponent implements OnInit {
 			value: Math.random().toString(),
 			code: Math.random().toString()
 		});
+		this.cdr.detectChanges();
 	}
 
 	onValueChange($event) {
