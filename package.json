@@ -2,7 +2,7 @@
 	"name": "ng2-selectize",
 	"description": "Angular 2 directive for selectize.js",
 	"author": "Nicholas Azar",
-	"version": "0.0.20",
+	"version": "0.0.21",
 	"license": "MIT",
 	"keywords": [
 		"angular2-selectize",
