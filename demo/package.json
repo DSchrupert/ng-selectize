@@ -1,74 +1,75 @@
 {
-  "name": "ng2-selectize-demo",
-  "description": "Demo app for ng2-selectize",
-  "author": "Nicholas Azar",
-  "version": "0.0.1",
-  "license": "MIT",
-  "keywords": [
-    "angular2-selectize",
-    "angular2",
-    "selectize",
-    "angular",
-    "ng2",
-    "directive",
-    "select"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NicholasAzar/ng2-selectize.git"
-  },
-  "bugs": {
-    "url": "https://github.com/NicholasAzar/ng2-selectize/issues"
-  },
-  "homepage": "https://github.com/NicholasAzar/ng2-selectize#readme",
-  "angular-cli": {},
-  "scripts": {
-    "start": "ng serve",
-    "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng test",
-    "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/common": "~2.1.0",
-    "@angular/compiler": "~2.1.0",
-    "@angular/core": "~2.1.0",
-    "@angular/forms": "~2.1.0",
-    "@angular/http": "~2.1.0",
-    "@angular/platform-browser": "~2.1.0",
-    "@angular/platform-browser-dynamic": "~2.1.0",
-    "@angular/router": "~3.1.0",
-    "core-js": "^2.4.1",
-    "jquery": "^3.1.1",
-    "lodash.assign": "^4.2.0",
-    "lodash.clonedeep": "^4.5.0",
-    "rxjs": "5.0.0-beta.12",
-    "selectize": "^0.12.4",
-    "semantic-ui-css": "^2.2.4",
-    "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23"
-  },
-  "devDependencies": {
-    "@types/jasmine": "^2.2.30",
-    "@types/jquery": "^2.0.34",
-    "@types/node": "^6.0.48",
-    "@types/selectize": "^0.12.28",
-    "angular-cli": "1.0.0-beta.19-3",
-    "codelyzer": "1.0.0-beta.1",
-    "jasmine-core": "2.4.1",
-    "jasmine-spec-reporter": "2.5.0",
-    "karma": "1.2.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-cli": "^1.0.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-remap-istanbul": "^0.2.1",
-    "lodash": "^4.16.6",
-    "protractor": "4.0.9",
-    "semantic-ui": "^2.2.6",
-    "ts-node": "1.2.1",
-    "tslint": "3.13.0",
-    "typescript": "~2.0.3",
-    "webdriver-manager": "10.2.5"
-  }
+	"name": "ng2-selectize-demo",
+	"description": "Demo app for ng2-selectize",
+	"author": "Nicholas Azar",
+	"version": "0.0.1",
+	"license": "MIT",
+	"keywords": [
+		"angular2-selectize",
+		"angular2",
+		"selectize",
+		"angular",
+		"ng2",
+		"directive",
+		"select"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NicholasAzar/ng2-selectize.git"
+	},
+	"bugs": {
+		"url": "https://github.com/NicholasAzar/ng2-selectize/issues"
+	},
+	"homepage": "https://github.com/NicholasAzar/ng2-selectize#readme",
+	"angular-cli": {},
+	"scripts": {
+		"start": "ng serve",
+		"lint": "tslint \"src/**/*.ts\"",
+		"test": "ng test",
+		"pree2e": "webdriver-manager update",
+		"e2e": "protractor",
+		"deploy": "ng github-pages:deploy --user-page"
+	},
+	"private": true,
+	"dependencies": {
+		"@angular/common": "~2.1.0",
+		"@angular/compiler": "~2.1.0",
+		"@angular/core": "~2.1.0",
+		"@angular/forms": "~2.1.0",
+		"@angular/http": "~2.1.0",
+		"@angular/platform-browser": "~2.1.0",
+		"@angular/platform-browser-dynamic": "~2.1.0",
+		"@angular/router": "~3.1.0",
+		"core-js": "^2.4.1",
+		"jquery": "^3.1.1",
+		"lodash.assign": "^4.2.0",
+		"lodash.clonedeep": "^4.5.0",
+		"rxjs": "5.0.0-beta.12",
+		"selectize": "^0.12.4",
+		"semantic-ui-css": "^2.2.4",
+		"ts-helpers": "^1.1.1",
+		"zone.js": "^0.6.23"
+	},
+	"devDependencies": {
+		"@types/jasmine": "^2.2.30",
+		"@types/jquery": "^2.0.34",
+		"@types/node": "^6.0.48",
+		"@types/selectize": "^0.12.28",
+		"angular-cli": "1.0.0-beta.19-3",
+		"codelyzer": "1.0.0-beta.1",
+		"jasmine-core": "2.4.1",
+		"jasmine-spec-reporter": "2.5.0",
+		"karma": "1.2.0",
+		"karma-chrome-launcher": "^2.0.0",
+		"karma-cli": "^1.0.1",
+		"karma-jasmine": "^1.0.2",
+		"karma-remap-istanbul": "^0.2.1",
+		"lodash": "^4.16.6",
+		"protractor": "4.0.9",
+		"semantic-ui": "^2.2.6",
+		"ts-node": "1.2.1",
+		"tslint": "3.13.0",
+		"typescript": "~2.0.3",
+		"webdriver-manager": "10.2.5"
+	}
 }
