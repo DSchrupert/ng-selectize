@@ -16,18 +16,7 @@ const _cloneDeep = require('lodash.clonedeep');
 })
 export class HomeComponent {
 	singleSelectDynamicAddConfig: Selectize.IOptions<any, any> = SingleSelectConfig;
-
-	exampleStaticOptions: ExampleSelectizeOption[] = _cloneDeep(ExampleValues_Frameworks);
-
-
-
 	singleSelectDynamicAddOptions: ExampleSelectizeOption[] = _cloneDeep(ExampleValues_Frameworks);
-
-	hasOrDoesntHaveOptions: ExampleSelectizeOption[] = [];
-	hasOptionsPlaceholderText: string = _cloneDeep(Example_Placeholder_HasOptions);
-	noOptionsPlaceholderText: string = _cloneDeep(Example_Placeholder_NoOptions);
-
-	selectizeIsEnabled:boolean = true;
 
 
 	// Option groups example
@@ -46,31 +35,11 @@ export class HomeComponent {
 
 	optionGroupExampleGroups: ExampleGroup[] = ExampleGroups_Colors;
 
-
-	printValue(value) {
-		console.log("Selectize value changed: ", value)
-	}
-
 	addSingleSelectDynamicAddOption() {
 		this.singleSelectDynamicAddOptions.push(<ExampleSelectizeOption>{
 			label: Math.random().toString(),
 			value: Math.random().toString(),
 			code: Math.random().toString()
 		});
-	}
-
-	clearHasOrNotExample() {
-		this.hasOrDoesntHaveOptions = [];
-	}
-	addOptionsToHaveOrNotExample() {
-		this.hasOrDoesntHaveOptions.push(<ExampleSelectizeOption>{
-			label: Math.random().toString(),
-			value: Math.random().toString(),
-			code: Math.random().toString()
-		});
-	}
-
-	toggleEnabledState() {
-		this.selectizeIsEnabled = !this.selectizeIsEnabled;
 	}
 }

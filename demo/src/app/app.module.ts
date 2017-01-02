@@ -11,6 +11,8 @@ import {Ng2SelectizeModule} from '../../../src/ng2-selectize/ng2-selectize.modul
 import {AddOptionComponent} from "./add-option/add-option.component";
 import {FormExampleComponent} from "./home/form-example/formExample.component";
 import {MultiSelectExampleComponent} from "./home/multi-select-example/multiSelectExample.component";
+import {StateToggleExampleComponent} from "./home/state-toggle-example/stateToggleExample.component";
+import {PlaceholderStateExampleComponent} from "./home/placeholder-state-example/placeholderStateExample.component";
 
 @NgModule({
 	declarations: [
@@ -19,7 +21,9 @@ import {MultiSelectExampleComponent} from "./home/multi-select-example/multiSele
 		PerformanceComponent,
 		AddOptionComponent,
 		MultiSelectExampleComponent,
-		FormExampleComponent
+		FormExampleComponent,
+		StateToggleExampleComponent,
+		PlaceholderStateExampleComponent
 	],
 	imports: [
 		BrowserModule,

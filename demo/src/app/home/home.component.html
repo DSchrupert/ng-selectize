@@ -12,44 +12,11 @@
 </div>
 
 <div class="example">
-	<label>Preset placeholders for hasOptions/noOptions state</label>
-	<ng2-selectize
-		   [config]="multiSelectDynamicAddConfig"
-		   [options]="hasOrDoesntHaveOptions"
-		   [noOptionsPlaceholder]="noOptionsPlaceholderText"
-		   [hasOptionsPlaceholder]="hasOptionsPlaceholderText"></ng2-selectize>
-	<div class="ui grid">
-		<div class="seven wide column">Placeholder when has options:</div>
-		<div class="nine wide column">
-			<div class="ui input" style="width:100%;">
-				<input type="text" [(ngModel)]="hasOptionsPlaceholderText"/>
-			</div>
-		</div>
-
-		<div class="seven wide column">Placeholder when no options:</div>
-		<div class="nine wide column">
-			<div class="ui input" style="width:100%;">
-				<input type="text" [(ngModel)]="noOptionsPlaceholderText"/>
-			</div>
-		</div>
-		<div class="sixteen wide column">
-			<button class="ui primary button" (click)="addOptionsToHaveOrNotExample()">Add Option</button>
-			<button class="ui button" (click)="clearHasOrNotExample()">Clear Options</button>
-		</div>
-	</div>
+	<placeholder-state-example></placeholder-state-example>
 </div>
 
 <div class="example">
-	<label>Dynamically update enabled/disabled state</label>
-	<ng2-selectize #enabledDisabledValue
-		   [config]="multiSelectDynamicAddConfig"
-		   [options]="exampleStaticOptions"
-		   [enabled]="selectizeIsEnabled"></ng2-selectize>
-	<div>
-		<button class="ui primary button" (click)="toggleEnabledState()">Toggle Enabled State</button>
-		<span>Is Enabled: <strong>{{selectizeIsEnabled}}</strong></span>
-		<span>Value: <strong>{{enabledDisabledValue.value}}</strong></span>
-	</div>
+	<state-toggle-example></state-toggle-example>
 </div>
 
 <div class="example">

@@ -1,0 +1,21 @@
+<label>Preset placeholders for hasOptions/noOptions state</label>
+<ng2-selectize [config]="config" [options]="options" [noOptionsPlaceholder]="noOptionsPlaceholder" [hasOptionsPlaceholder]="hasOptionsPlaceholder"></ng2-selectize>
+<div class="ui grid">
+	<div class="seven wide column">Placeholder when has options:</div>
+	<div class="nine wide column">
+		<div class="ui input" style="width:100%;">
+			<input type="text" [(ngModel)]="hasOptionsPlaceholder"/>
+		</div>
+	</div>
+
+	<div class="seven wide column">Placeholder when no options:</div>
+	<div class="nine wide column">
+		<div class="ui input" style="width:100%;">
+			<input type="text" [(ngModel)]="noOptionsPlaceholder"/>
+		</div>
+	</div>
+	<div class="sixteen wide column">
+		<button class="ui primary button" (click)="addRandomOption()">Add Option</button>
+		<button class="ui button" (click)="clearOptions()">Clear Options</button>
+	</div>
+</div>

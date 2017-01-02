@@ -1,5 +1,6 @@
 import {Component, OnInit, OnChanges, SimpleChanges} from "@angular/core";
 import {ExampleSelectizeOption} from "../app.types";
+import {PERFORMANCE_CONFIG} from "./performance.config";
 
 @Component({
 	selector: 'performance',
@@ -7,12 +8,7 @@ import {ExampleSelectizeOption} from "../app.types";
 })
 export class PerformanceComponent implements OnInit {
 
-	performanceTestConfig: Selectize.IOptions<any, any> = {
-		persist: true,
-		labelField: 'label',
-		valueField: 'value',
-		plugins: ['remove_button']
-	};
+	config = PERFORMANCE_CONFIG;
 	optionsLength:number = 100;
 	options: ExampleSelectizeOption[];
 
@@ -22,10 +18,6 @@ export class PerformanceComponent implements OnInit {
 
 	onOptionsCountChange(newValue) {
 		this.options = this.generateRandomOptions();
-	}
-
-	printValue($event) {
-		console.log("Selectize Value: ", $event);
 	}
 
 	generateRandomOptions(): ExampleSelectizeOption[] {
