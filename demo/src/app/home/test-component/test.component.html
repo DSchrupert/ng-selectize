@@ -1,0 +1,11 @@
+<div class="example">
+	<label>Test example</label>
+
+	<form #uploadform="ngForm">
+		<div>
+			<ng2-selectize id="dataType" [config]="arrayConfig" [options]="dataTypeList" [hasOptionsPlaceholder]="'Please select an option'" [noOptionsPlaceholder]="'No options available'" name="dataType" [(ngModel)]="dataTypeValue" (onValueChange)="onDataTypeChange($event)" required ngDefaultControl></ng2-selectize>
+			<!--<div *ngIf="formErrors.dataType" class=" form-control-feedback">{{ formErrors.dataType }}</div>-->
+		</div>
+		value: {{dataTypeValue}}
+	</form>
+</div>

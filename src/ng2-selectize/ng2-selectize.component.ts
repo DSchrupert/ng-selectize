@@ -1,4 +1,3 @@
-//// <reference path="../../../typings/globals/selectize/index.d.ts" />
 import {
 	Input,
 	OnInit,
@@ -37,35 +36,29 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	@Input('hasOptionsPlaceholder') hasOptionsPlaceholder: string;
 	@Input('noOptionsPlaceholder') noOptionsPlaceholder: string;
 	@Input('enabled') enabled: boolean;
+	@Input('ngModel') _value:string[];
 
 	@ViewChild('selectizeInput') selectizeInput:any;
 
 	private _selectize: any;
 	private _oldOptions: any[];
-	private _oldOptionGroups: any[];
 
+	private _oldOptionGroups: any[];
 	// Control value accessors.
 	private onTouchedCallback: () => void = noop;
 	private onChangeCallback: (_: any) => void = noop;
-	@Input('ngModel') _value:string[];
 
 	constructor(private cdr:ChangeDetectorRef) {}
 
 	ngOnInit(): void {
 		this._selectize = $(this.selectizeInput.nativeElement).selectize(this.config)[0].selectize;
 		this._selectize.on('change', this.onSelectizeValueChange.bind(this));
+		this._selectize.on('option_add', this.onSelectizeOptionChange.bind(this));
 
 		this.onSelectizeOptionsChange();
 		this.onSelectizeOptionGroupChange();
 		if (this.placeholder && this.placeholder.length > 0) {
 			this.updatePlaceholder();
-		}
-
-		if (this.value && this.value.length > 0) {
-			this.value.forEach((item) => {
-				this.selectize.addItem(item, false);
-			});
-			this.selectize.refreshItems();
 		}
 		this._oldOptions = cloneDeep(this.options);
 		this._oldOptionGroups = cloneDeep(this.optionGroups);
@@ -101,6 +94,29 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	}
 
 	/**
+	 * Refresh selected values when options change.
+	 */
+	onSelectizeOptionChange():void {
+		this.refreshValue();
+	}
+
+	/**
+	 * Refresh the selected values.
+	 */
+	refreshValue():void {
+		if (this.value && this.selectize.order > 0) {
+			if (!isEqual(this.selectize.getValue(), this.value)) {
+				const items = typeof this.value === 'string' ? [this.value] : this.value;
+				items.forEach((item) => {
+					if (this.selectize.search(item).total > 0) {
+						this.selectize.addItem(item, true);
+					}
+				});
+			}
+		}
+	}
+
+	/**
 	 * Update the current placeholder based on the given input parameter.
 	 */
 	updatePlaceholder(): void {
@@ -113,11 +129,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	 * Sets the selectize state based on the new value.
 	 */
 	onEnabledStatusChange():void {
-		if (this.enabled) {
-			this._selectize.enable();
-		} else {
-			this._selectize.disable();
-		}
+		this.enabled ? this.selectize.enable() : this.selectize.disable();
 	}
 
 	/**

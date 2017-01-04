@@ -13,6 +13,7 @@ import {MultiSelectExampleComponent} from "./home/multi-select-example/multiSele
 import {StateToggleExampleComponent} from "./home/state-toggle-example/stateToggleExample.component";
 import {PlaceholderStateExampleComponent} from "./home/placeholder-state-example/placeholderStateExample.component";
 import {PresetValueExampleComponent} from "./home/preset-value-example/presetValueExample.component";
+import {TestComponent} from "./home/test-component/test.component";
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,8 @@ import {PresetValueExampleComponent} from "./home/preset-value-example/presetVal
 		FormExampleComponent,
 		StateToggleExampleComponent,
 		PlaceholderStateExampleComponent,
-		PresetValueExampleComponent
+		PresetValueExampleComponent,
+		TestComponent
 	],
 	imports: [
 		BrowserModule,
@@ -33,7 +35,7 @@ import {PresetValueExampleComponent} from "./home/preset-value-example/presetVal
 		HttpModule,
 		RouterModule.forRoot([
 			{path: 'performance', component: PerformanceComponent},
-			{path: 'wip', component: PresetValueExampleComponent},
+			{path: 'wip', component: TestComponent},
 			{path: '', component: HomeComponent}
 		]),
 		Ng2SelectizeModule // Import the ng2-selectize module.
