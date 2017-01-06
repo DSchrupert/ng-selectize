@@ -10,10 +10,10 @@ export class TestComponent implements OnInit {
 
 	arrayConfig = {
 		create: false,
-		valueField: "name",
+		valueField: "id",
 		labelField: "name",
 		delimiter: ",",
-		searchField: "name",
+		searchField: ["name", "id"],
 		maxItems: 1,
 		onInitialize: function () {},
 
@@ -26,12 +26,22 @@ export class TestComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.dataTypeList = [{"name": "John"},
-			{"name": "Sam"},
-			{"name": "Master "},
-			{"name": "Mathew"}];
+		this.dataTypeList = [
+			{
+				"id": "1",
+				"name": "John"
+			}, {
+				"id": "2",
+				"name": "Sam"
+			}, {
+				"id": "3",
+				"name": "Thomas"
+			},{
+				"id": "4",
+				"name": "Mathew"
+		}];
 
-		this.dataTypeValue = ["Sam"];
+		this.dataTypeValue = this.dataTypeList[0].id;
 	}
 
 	onDataTypeChange($event) {
