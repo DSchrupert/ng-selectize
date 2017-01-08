@@ -1,0 +1,21 @@
+<div class="example">
+	<h3>Dynamic Options Example:</h3>
+
+	<label>Current Options:</label>
+	<ng2-selectize [options]="currentOptions" [(ngModel)]="value" [config]="currentOptionsConfig"></ng2-selectize>
+	<pre>Current value: {{value | json}}</pre>
+
+	<div class="ui grid">
+		<div class="eight wide column">
+			<label>Remove Options:</label>
+			<ng2-selectize [options]="removeOptions" [(ngModel)]="removeOptionsValue"
+						   [config]="removeOptionsConfig"></ng2-selectize>
+			<button class="ui button" (click)="removeSelectedOption()">Remove Selected Option(s)</button>
+		</div>
+		<div class="eight wide column">
+			<label>Add Options:</label>
+			<ng2-selectize [options]="addOptions" [(ngModel)]="addOptionsValue" [config]="addOptionsConfig"></ng2-selectize>
+			<button class="ui primary button" (click)="addSelectedOptions()">Add Selected Options(s)</button>
+		</div>
+	</div>
+</div>

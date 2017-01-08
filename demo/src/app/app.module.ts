@@ -14,6 +14,7 @@ import {StateToggleExampleComponent} from "./home/state-toggle-example/stateTogg
 import {PlaceholderStateExampleComponent} from "./home/placeholder-state-example/placeholderStateExample.component";
 import {PresetValueExampleComponent} from "./home/preset-value-example/presetValueExample.component";
 import {TestComponent} from "./home/test-component/test.component";
+import {DynamicOptionsComponent} from "./home/dynamic-options-example/dynamicOptions.component";
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import {TestComponent} from "./home/test-component/test.component";
 		StateToggleExampleComponent,
 		PlaceholderStateExampleComponent,
 		PresetValueExampleComponent,
-		TestComponent
+		TestComponent,
+		DynamicOptionsComponent
 	],
 	imports: [
 		BrowserModule,
@@ -35,7 +37,7 @@ import {TestComponent} from "./home/test-component/test.component";
 		HttpModule,
 		RouterModule.forRoot([
 			{path: 'performance', component: PerformanceComponent},
-			{path: 'wip', component: TestComponent},
+			{path: 'wip', component: DynamicOptionsComponent},
 			{path: '', component: HomeComponent}
 		]),
 		Ng2SelectizeModule // Import the ng2-selectize module.

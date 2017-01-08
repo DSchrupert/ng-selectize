@@ -1,12 +1,14 @@
-<label>Dynamically add options to <strong>Multi</strong> select: </label>
-<ng2-selectize [config]="config" [options]="options" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="onValueChange($event)" ngDefaultControl></ng2-selectize>
-<div class="form-inline">
-	<!--<add-option (addedOption)="addMultiSelectDynamicAddOption($event)" [fieldId]="'addMultiSelectDynamicOption'"></add-option>-->
-	<button class="ui primary button" (click)="addRandomOption()">Add Option</button>
-	<div class="ui input">
-		<input type="text" [(ngModel)]="placeholder"/>
-	</div>
-	<div class="ui segment">
-		<p>Current value: {{value | json}}</p>
+<div class="example">
+	<h3>Dynamically add options to Multi select: </h3>
+
+	<ng2-selectize [config]="config" [options]="options" [placeholder]="placeholder" [(ngModel)]="value"
+				   (ngModelChange)="onValueChange($event)" ngDefaultControl></ng2-selectize>
+	<div class="form-inline">
+		<!--<add-option (addedOption)="addMultiSelectDynamicAddOption($event)" [fieldId]="'addMultiSelectDynamicOption'"></add-option>-->
+		<button class="ui primary button" (click)="addRandomOption()">Add Option</button>
+		<div class="ui input">
+			<input type="text" [(ngModel)]="placeholder"/>
+		</div>
+		<pre>Current value: {{value | json}}</pre>
 	</div>
 </div>

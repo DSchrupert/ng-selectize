@@ -1,29 +1,16 @@
-<div class="example">
-	<multi-select-example></multi-select-example>
+<dynamic-options-example></dynamic-options-example>
 
-</div>
+<multi-select-example></multi-select-example>
 
-<div class="example">
-	<label>Dynamically add options to <strong>Single</strong> select</label>
-	<ng2-selectize
-		   [config]="singleSelectDynamicAddConfig"
-		   [options]="singleSelectDynamicAddOptions"></ng2-selectize>
-	<button class="ui primary button" (click)="addSingleSelectDynamicAddOption()">Add Option</button>
-</div>
+<placeholder-state-example></placeholder-state-example>
 
-<div class="example">
-	<placeholder-state-example></placeholder-state-example>
-</div>
-
-<div class="example">
-	<state-toggle-example></state-toggle-example>
-</div>
+<state-toggle-example></state-toggle-example>
 
 <div class="example">
 	<label>Option groups example</label>
 	<ng2-selectize [config]="optionGroupExampleConfig"
-		   [options]="optionGroupExampleOptions"
-		   [optionGroups]="optionGroupExampleGroups"></ng2-selectize>
+				   [options]="optionGroupExampleOptions"
+				   [optionGroups]="optionGroupExampleGroups"></ng2-selectize>
 </div>
 
 

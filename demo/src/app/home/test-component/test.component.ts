@@ -13,7 +13,7 @@ export class TestComponent implements OnInit {
 		valueField: "id",
 		labelField: "name",
 		delimiter: ",",
-		searchField: ["name", "id"],
+		searchField: ["name"],
 		maxItems: 1,
 		onInitialize: function () {},
 
