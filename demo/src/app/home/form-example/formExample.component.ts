@@ -19,5 +19,11 @@ export class FormExampleComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.formGroupExample = this.formBuilder.group(FORM_GROUP_EXAMPLE);
+		console.log(this.formGroupExample.controls['requiredDropdownExample'])
+	}
+
+	hasStartsWithRError():boolean {
+		console.log(this.formGroupExample.controls['requiredDropdownExample'].hasError('doesntStartWithR'))
+		return true;
 	}
 }

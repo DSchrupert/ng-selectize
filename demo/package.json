@@ -28,7 +28,7 @@
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "deploy": "ng github-pages:deploy"
+    "release:docs": "ng build --prod --base-href=/ng2-selectize/"
   },
   "private": true,
   "dependencies": {
@@ -42,7 +42,7 @@
     "@angular/router": "~3.1.0",
     "core-js": "^2.4.1",
     "jquery": "^3.1.1",
-    "lodash.assign": "^4.2.0",
+    "lodash.assignin": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.differencewith": "^4.5.0",
     "lodash.intersectionwith": "^4.4.0",
@@ -53,6 +53,7 @@
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
+	  "@angular/compiler-cli": "^2.1.0",
     "@types/jasmine": "^2.2.30",
     "@types/jquery": "^2.0.34",
     "@types/node": "^6.0.48",
@@ -67,7 +68,6 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "4.0.9",
-    "semantic-ui": "^2.2.6",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "~2.0.3",

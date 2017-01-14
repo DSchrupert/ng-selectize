@@ -16,6 +16,7 @@ import {PresetValueExampleComponent} from "./home/preset-value-example/presetVal
 import {TestComponent} from "./home/test-component/test.component";
 import {DynamicOptionsComponent} from "./home/dynamic-options-example/dynamicOptions.component";
 
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -44,5 +45,6 @@ import {DynamicOptionsComponent} from "./home/dynamic-options-example/dynamicOpt
 	],
 	bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
+
+

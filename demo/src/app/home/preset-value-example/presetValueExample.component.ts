@@ -24,7 +24,7 @@ export class PresetValueExampleComponent implements OnInit {
 
     ngOnInit() { }
 
-	onValueChange($event) {
+	onValueChange($event:any) {
     	console.log('value change: ', $event);
 	}
 

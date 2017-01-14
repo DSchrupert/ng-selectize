@@ -5,7 +5,7 @@ import {Component, OnInit} from "@angular/core";
 	templateUrl: 'test.component.html'
 })
 export class TestComponent implements OnInit {
-	dataTypeList = [];
+	dataTypeList:any[] = [];
 	dataTypeValue: string[] = [];
 
 	arrayConfig = {
@@ -44,7 +44,7 @@ export class TestComponent implements OnInit {
 		this.dataTypeValue = this.dataTypeList[0].id;
 	}
 
-	onDataTypeChange($event) {
+	onDataTypeChange($event:any) {
 		console.log('value change: ', $event);
 	}
 

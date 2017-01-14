@@ -1,6 +1,6 @@
 <h3>Form Example:</h3>
 <div class="ui segment">
-	<form class="ui form" [formGroup]="formGroupExample">
+	<form class="ui form" [formGroup]="formGroupExample" [ngClass]="{'error': !formGroupExample.valid && formGroupExample.touched}">
 		<div class="required field">
 			<label>Name:</label>
 			<div class="two fields">
@@ -19,12 +19,26 @@
 			</div>
 		</div>
 		<div class="ui grid">
+			<!--<div class="row">-->
+				<!--controls: {{formGroupExample.controls['requiredDropdownExample'].errors | json}}-->
+			<!--</div>-->
 			<div class="sixteen wide column" style="text-align: right;">
 				<div class="ui teal right labeled icon submit button" [ngClass]="{'disabled': !formGroupExample.valid}">
 					Submit
 					<i class="checkmark icon"></i>
 				</div>
 			</div>
+		</div>
+		<div class="ui error message">
+			<div class="class">Validation Errors</div>
+			<ul>
+				<li *ngIf="formGroupExample.controls['requiredDropdownExample'].hasError('doesntStartWithR')">Dropdown value must start with R.</li>
+				<li *ngIf="formGroupExample.controls['requiredDropdownExample'].hasError('required')">Dropdown value is required.</li>
+				<li *ngIf="formGroupExample.controls['firstName'].hasError('required')">First name is required.</li>
+				<li *ngIf="formGroupExample.controls['lastName'].hasError('required')">Last name is required.</li>
+
+				<!--<li *ngIf="formGroupExample.control['requiredDropdownExample'] && formGroupExample.control['requiredDropdownExample'].errors['required']">Dropdown value is required...</li>-->
+			</ul>
 		</div>
 	</form>
 </div>

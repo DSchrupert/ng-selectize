@@ -29,7 +29,7 @@ export class MultiSelectExampleComponent implements OnInit {
 		this.cdr.detectChanges();
 	}
 
-	onValueChange($event) {
+	onValueChange($event:any) {
 		console.log("Multi select option changed: ", $event);
 	}
 }
