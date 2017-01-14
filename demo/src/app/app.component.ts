@@ -7,4 +7,10 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
 	title = 'Angular 2 Selectize Examples';
+
+	// constructor(translate: TranslateService) {
+	// 	translate.setDefaultLang('en');
+	// 	translate.use('en');
+	// }
+
 }

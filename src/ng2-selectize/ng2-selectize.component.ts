@@ -22,7 +22,8 @@ export const SELECTIZE_VALUE_ACCESSOR: any = {
 	providers: [SELECTIZE_VALUE_ACCESSOR]
 })
 export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, ControlValueAccessor {
-	@Input('config') config: Selectize.IOptions<any, any>;
+	@Input('config') config: any;
+	// @Input('config') config: Selectize.IOptions<any, any>;
 	@Input('options') options: any[];
 	@Input('optionGroups') optionGroups: any[];
 	@Input('placeholder') placeholder: string;
@@ -89,10 +90,10 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	/**
 	 * Refresh selected values when options change.
 	 */
-	onSelectizeOptionAdd(optionValue): void {
+	onSelectizeOptionAdd(optionValue:string): void {
 		if (this.value) {
 			const items = typeof this.value === 'string' ? [this.value] : this.value;
-			if (_find(items, (value) => {
+			if (_find(items, (value:any) => {
 					return value === optionValue
 				})) {
 				this.selectize.addItem(optionValue, true);
@@ -100,10 +101,10 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 		}
 	}
 
-	onSelectizeOptionRemove(optionValue): void {
+	onSelectizeOptionRemove(optionValue:any): void {
 		if (this.value) {
 			const items = typeof this.value === 'string' ? [this.value] : this.value;
-			if (_find(items, (value) => {
+			if (_find(items, (value:any) => {
 					return value === optionValue
 				})) {
 				this.selectize.removeItem(optionValue, true);
@@ -131,22 +132,22 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	 * Triggered when a change is detected with the given set of options.
 	 */
 	onSelectizeOptionsChange(): void {
-		const optionsRemoved = _differenceWith(this._oldOptions, this.options, (oldValue, newValue) => {
+		const optionsRemoved = _differenceWith(this._oldOptions, this.options, (oldValue:any, newValue:any) => {
 			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField];
 		});
 
-		const newOptionsAdded = _differenceWith(this.options, this._oldOptions, (oldValue, newValue) => {
+		const newOptionsAdded = _differenceWith(this.options, this._oldOptions, (oldValue:any, newValue:any) => {
 			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField];
 		});
 
 		if (optionsRemoved && optionsRemoved.length > 0) {
-			optionsRemoved.forEach((option) => {
+			optionsRemoved.forEach((option:any) => {
 				this.selectize.removeOption(option[this.selectize.settings.valueField]);
 			});
 		}
 
 		if (newOptionsAdded && newOptionsAdded.length > 0) {
-			newOptionsAdded.forEach((option) => {
+			newOptionsAdded.forEach((option:any) => {
 				this.selectize.addOption(option);
 			});
 		}
@@ -172,7 +173,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	 * Dispatches change event when a value change is detected.
 	 * @param $event
 	 */
-	onSelectizeValueChange($event): void {
+	onSelectizeValueChange($event:any): void {
 		this.value = $event;
 	}
 

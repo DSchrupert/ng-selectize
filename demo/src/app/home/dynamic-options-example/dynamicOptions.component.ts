@@ -31,7 +31,7 @@ export class DynamicOptionsComponent implements OnInit {
 	}
 
 	removeSelectedOption() {
-		this.currentOptions = _differenceWith(this.currentOptions, this.removeOptionsValue, (oldValue, selectedValue) => {
+		this.currentOptions = _differenceWith(this.currentOptions, this.removeOptionsValue, (oldValue:any, selectedValue:any) => {
 			return oldValue[this.currentOptionsConfig.valueField] === selectedValue;
 		});
 		this.refreshRemoveAndAddOptions();
@@ -39,11 +39,11 @@ export class DynamicOptionsComponent implements OnInit {
 
 	addSelectedOptions() {
 		if (this.addOptionsValue && this.addOptionsValue.length > 0) {
-			let optionsToAdd = _intersectionWith(this.addOptions, this.addOptionsValue, (option, value) => {
+			let optionsToAdd = _intersectionWith(this.addOptions, this.addOptionsValue, (option:any, value:any) => {
 				return option[this.addOptionsConfig.valueField] === value;
 			});
 			if (optionsToAdd && optionsToAdd.length > 0) {
-				optionsToAdd.forEach((option) => {
+				optionsToAdd.forEach((option:any) => {
 					this.currentOptions.push(option);
 				});
 			}
@@ -54,7 +54,7 @@ export class DynamicOptionsComponent implements OnInit {
 	refreshRemoveAndAddOptions() {
 		this.removeOptions = this.currentOptions;
 
-		this.addOptions = _differenceWith(ExampleValues_Frameworks, this.removeOptions, (allValue, removedValue) => {
+		this.addOptions = _differenceWith(ExampleValues_Frameworks, this.removeOptions, (allValue:any, removedValue:any) => {
 			return allValue[this.currentOptionsConfig.valueField] === removedValue[this.removeOptionsConfig.valueField];
 		});
 	}

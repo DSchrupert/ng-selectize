@@ -1,23 +1,40 @@
 {
 	"compilerOptions": {
-		"declaration": false,
+		"declaration": true,
+		"stripInternal": true,
+		"strictNullChecks": true,
+		"noImplicitAny": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"lib": [
-			"es6",
+			"es2015",
 			"dom"
 		],
-		"mapRoot": "./",
-		"module": "es6",
+		"baseUrl": ".",
+		"rootDir": ".",
+		"module": "es2015",
 		"moduleResolution": "node",
-		"outDir": "../dist/out-tsc",
+		"outDir": "dist",
 		"sourceMap": true,
+		"inlineSources": true,
 		"target": "es5",
+		"skipLibCheck": true,
 		"types": [
 			"node"
 		],
+		"paths": {
+			"@angular/core": ["node_modules/@angular/core"],
+			"rxjs/*": ["node_modules/rxjs/*"]
+		},
 		"typeRoots": [
 			"../node_modules/@types"
 		]
+	},
+	"files": [
+		"index.ts"
+	],
+	"angularCompilerOptions": {
+		"strictMetadataEmit": true,
+		"genDir": "./aot"
 	}
 }

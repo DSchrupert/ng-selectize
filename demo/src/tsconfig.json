@@ -1,17 +1,22 @@
 {
 	"compilerOptions": {
-		"declaration": false,
+		"declaration": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"lib": [
-			"es6",
+			"es2015",
 			"dom"
 		],
 		"mapRoot": "./",
-		"module": "es6",
+		"baseUrl": ".",
+		"stripInternal": true,
+		"strictNullChecks": true,
+		"noImplicitAny": true,
+		"module": "es2015",
 		"moduleResolution": "node",
 		"outDir": "../dist/out-tsc",
 		"sourceMap": true,
+		"inlineSources": true,
 		"target": "es5",
 		"types": [
 			"node"
@@ -19,5 +24,8 @@
 		"typeRoots": [
 			"../node_modules/@types"
 		]
+	},
+	"angularCompilerOptions": {
+		"strictMetadataEmit": true
 	}
 }

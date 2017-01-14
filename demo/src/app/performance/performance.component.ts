@@ -16,7 +16,7 @@ export class PerformanceComponent implements OnInit {
 		this.options = this.generateRandomOptions();
 	}
 
-	onOptionsCountChange(newValue) {
+	onOptionsCountChange(newValue:any) {
 		this.options = this.generateRandomOptions();
 	}
 

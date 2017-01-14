@@ -6,7 +6,6 @@ import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {PerformanceComponent} from "./performance/performance.component";
-import {Ng2SelectizeModule} from "../../../src/ng2-selectize/ng2-selectize.module";
 import {AddOptionComponent} from "./add-option/add-option.component";
 import {FormExampleComponent} from "./home/form-example/formExample.component";
 import {MultiSelectExampleComponent} from "./home/multi-select-example/multiSelectExample.component";
@@ -15,6 +14,11 @@ import {PlaceholderStateExampleComponent} from "./home/placeholder-state-example
 import {PresetValueExampleComponent} from "./home/preset-value-example/presetValueExample.component";
 import {TestComponent} from "./home/test-component/test.component";
 import {DynamicOptionsComponent} from "./home/dynamic-options-example/dynamicOptions.component";
+import {Ng2SelectizeModule} from "../../../dist";
+
+// export function createTranslateLoader(http: Http) {
+// 	return new TranslateStaticLoader(http, './assets/i18n', '.json');
+// }
 
 @NgModule({
 	declarations: [
@@ -40,9 +44,15 @@ import {DynamicOptionsComponent} from "./home/dynamic-options-example/dynamicOpt
 			{path: 'wip', component: DynamicOptionsComponent},
 			{path: '', component: HomeComponent}
 		]),
+		// TranslateModule.forRoot({
+		// 	provide: TranslateLoader,
+		// 	useFactory: createTranslateLoader,
+		// 	deps: [Http]
+		// }),
 		Ng2SelectizeModule // Import the ng2-selectize module.
 	],
 	bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
+
+
