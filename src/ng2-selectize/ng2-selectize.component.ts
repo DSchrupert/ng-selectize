@@ -231,7 +231,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	}
 
 	set value(value: string[]) {
-		if (value !== this._value) {
+		if (value && value !== this._value) {
 			this._value = value;
 			this.onChangeCallback(value);
 		}
