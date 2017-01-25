@@ -151,10 +151,6 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 				this.selectize.addOption(option);
 			});
 		}
-
-		setTimeout(() => {
-			this.value = this.selectize.getValue();
-		});
 		this.updatePlaceholder();
 	}
 
@@ -200,6 +196,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 		if (obj && obj !== this._value) {
 			this._value = obj;
 		}
+        this.selectize.setValue(this._value);
 	}
 
 	/**
