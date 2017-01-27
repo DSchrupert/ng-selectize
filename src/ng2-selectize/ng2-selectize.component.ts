@@ -7,6 +7,7 @@ const isEqual = require('lodash.isequal');
 const _find = require('lodash.find');
 const _differenceWith = require('lodash.differencewith');
 
+// FIXME -> Will be getting rid of these and updating docs.
 let $ = require('jquery');
 require('../vendors/selectize/selectize.standalone');
 
@@ -133,11 +134,13 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	 */
 	onSelectizeOptionsChange(): void {
 		const optionsRemoved = _differenceWith(this._oldOptions, this.options, (oldValue:any, newValue:any) => {
-			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField];
+			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField]
+				&& oldValue[this.selectize.settings.labelField] === newValue[this.selectize.settings.labelField];
 		});
 
 		const newOptionsAdded = _differenceWith(this.options, this._oldOptions, (oldValue:any, newValue:any) => {
-			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField];
+			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField]
+				&& oldValue[this.selectize.settings.labelField] === newValue[this.selectize.settings.labelField];
 		});
 
 		if (optionsRemoved && optionsRemoved.length > 0) {
