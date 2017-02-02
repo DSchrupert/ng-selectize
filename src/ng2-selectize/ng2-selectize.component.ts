@@ -2,14 +2,13 @@ import {Input, OnInit, OnChanges, SimpleChanges, DoCheck, forwardRef, Component,
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from "@angular/forms";
 import {noop} from "rxjs/util/noop";
 
-const cloneDeep = require('lodash.clonedeep');
-const isEqual = require('lodash.isequal');
-const _find = require('lodash.find');
-const _differenceWith = require('lodash.differencewith');
+import cloneDeep from 'lodash-es/cloneDeep';
+import isEqual from 'lodash-es/isEqual';
+import find from 'lodash-es/find';
+import differenceWith from 'lodash-es/differenceWith';
 
-// FIXME -> Will be getting rid of these and updating docs.
-let $ = require('jquery');
-require('../vendors/selectize/selectize.standalone');
+// let $ = require('jquery');
+// require('../vendors/selectize/selectize.standalone');
 
 export const SELECTIZE_VALUE_ACCESSOR: any = {
 	provide: NG_VALUE_ACCESSOR,
@@ -94,7 +93,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	onSelectizeOptionAdd(optionValue:string): void {
 		if (this.value) {
 			const items = typeof this.value === 'string' ? [this.value] : this.value;
-			if (_find(items, (value:any) => {
+			if (find(items, (value:any) => {
 					return value === optionValue
 				})) {
 				this.selectize.addItem(optionValue, true);
@@ -105,7 +104,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	onSelectizeOptionRemove(optionValue:any): void {
 		if (this.value) {
 			const items = typeof this.value === 'string' ? [this.value] : this.value;
-			if (_find(items, (value:any) => {
+			if (find(items, (value:any) => {
 					return value === optionValue
 				})) {
 				this.selectize.removeItem(optionValue, true);
@@ -133,12 +132,12 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	 * Triggered when a change is detected with the given set of options.
 	 */
 	onSelectizeOptionsChange(): void {
-		const optionsRemoved = _differenceWith(this._oldOptions, this.options, (oldValue:any, newValue:any) => {
+		const optionsRemoved = differenceWith(this._oldOptions, this.options, (oldValue:any, newValue:any) => {
 			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField]
 				&& oldValue[this.selectize.settings.labelField] === newValue[this.selectize.settings.labelField];
 		});
 
-		const newOptionsAdded = _differenceWith(this.options, this._oldOptions, (oldValue:any, newValue:any) => {
+		const newOptionsAdded = differenceWith(this.options, this._oldOptions, (oldValue:any, newValue:any) => {
 			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField]
 				&& oldValue[this.selectize.settings.labelField] === newValue[this.selectize.settings.labelField];
 		});
@@ -151,7 +150,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 
 		if (newOptionsAdded && newOptionsAdded.length > 0) {
 			newOptionsAdded.forEach((option:any) => {
-				this.selectize.addOption(option);
+				this.selectize.addOption(cloneDeep(option));
 			});
 		}
 		this.updatePlaceholder();
@@ -231,7 +230,7 @@ export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, Contro
 	}
 
 	set value(value: string[]) {
-		if (value && value !== this._value) {
+		if (value !== this._value) {
 			this._value = value;
 			this.onChangeCallback(value);
 		}

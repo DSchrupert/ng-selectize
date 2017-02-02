@@ -13,6 +13,10 @@ Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
     `"../node_modules/selectize/dist/css/selectize.css",`
     `"../node_modules/selectize/dist/css/selectize.{your chosen theme}.css"`
     to the styles array within `angular-cli.json`
+3. Add:
+	`"../node_modules/jquery/dist/jquery.min.js",`
+	`"../node_modules/ng2-selectize/src/vendors/selectize/selectize.standalone.js"` (or take from /node_modules/selectize/...)
+	to the scripts array within `angular-cli.json`
 3. Import module within applicable @NgModule:
    `import {Ng2SelectizeModule} from 'ng2-selectize';`
    `imports: [..., Ng2SelectizeModule, ...],`

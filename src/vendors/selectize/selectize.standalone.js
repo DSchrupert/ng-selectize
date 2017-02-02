@@ -1172,7 +1172,8 @@
 			userOptions: {},
 			items: [],
 			renderCache: {},
-			onSearchChange: settings.loadThrottle === null ? self.onSearchChange : debounce(self.onSearchChange, settings.loadThrottle)
+			onSearchChange: settings.loadThrottle === null ? self.onSearchChange : debounce(self.onSearchChange, settings.loadThrottle),
+			dropdownDirection: 'down'
 		});
 
 		// search system
