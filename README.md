@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/ng-selectize.svg)](https://badge.fury.io/js/ng-selectize)
 
-Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
+Angular (2,4,...) component for [selectize.js](https://selectize.github.io/selectize.js/)
 
 [Hosted Example Site](https://nicholasazar.github.io/ng-selectize)
 
