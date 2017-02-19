@@ -1,8 +1,8 @@
-# ng2-selectize
+# ng-selectize
 
 [![npm version](https://badge.fury.io/js/ng2-selectize.svg)](https://badge.fury.io/js/ng2-selectize)
 
-Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
+Angular (2,4,...) component for [selectize.js](https://selectize.github.io/selectize.js/)
 
 [Hosted Example Site](https://nicholasazar.github.io/ng2-selectize)
 
@@ -27,14 +27,13 @@ Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
  ```
  git pull git@github.com:NicholasAzar/ng2-selectize-demo.git
  cd ng2-selectize-demo
- yarn
+ npm i (or yarn)
  npm start
  // navigate to localhost:4200
  ```
  
  ## Docs
- The docs directory within this repo is the `ng build --prod --aot` result of the [ng2-selectize-demo](https://github.com/NicholasAzar/ng2-selectize-demo) repository.
- Hosted at [nicholasazar.github.io/ng2-selectize](https://nicholasazar.github.io/ng2-selectize)
+ The docs directory within this repo is the `ng build --prod --aot` result of the [ng2-selectize-demo](https://github.com/NicholasAzar/ng2-selectize-demo) repository and is available at the hosted example site at the top of this readme.
  
 ## Attributes
 | Attribute | Type | Default | Description | Implemented |
