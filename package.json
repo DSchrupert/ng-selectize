@@ -33,7 +33,7 @@
     "copy": "cpx package-dist.json dist && cpx \"src/selectize/*\" dist/selectize && renamer --find package-dist.json --replace package.json ./dist/*",
     "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy"
   },
-  "private": false,
+  "private": true,
   "dependencies": {
     "@angular/common": "^2.4.0",
     "@angular/compiler": "^2.4.0",

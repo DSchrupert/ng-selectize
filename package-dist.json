@@ -15,6 +15,7 @@
 		"component",
 		"select"
 	],
+	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/NicholasAzar/ng2-selectize.git"
