@@ -31,11 +31,10 @@ Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
  npm start
  // navigate to localhost:4200
  ```
- 
- ## Docs
- The docs directory within this repo is the `ng build --prod --aot` result of the [ng-selectize-demo](https://github.com/NicholasAzar/ng-selectize-demo) repository.
- Hosted at [nicholasazar.github.io/ng-selectize](https://nicholasazar.github.io/ng-selectize)
- 
+
+## Docs
+The docs directory within this repo is the result of `ng build --prod --aot` from the [ng-selectize-demo](https://github.com/NicholasAzar/ng-selectize-demo) repository. It can be accessed from the hosted example site above.
+
 ## Attributes
 | Attribute | Type | Default | Description | Implemented |
 | --- | --- | --- | --- | --- |
