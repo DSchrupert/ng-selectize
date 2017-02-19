@@ -1,23 +1,36 @@
 {
 	"compilerOptions": {
-		"declaration": false,
-		"emitDecoratorMetadata": true,
+		"baseUrl": "",
+		"declaration": true,
+		"stripInternal": true,
 		"experimentalDecorators": true,
-		"lib": [
-			"es6",
-			"dom"
-		],
-		"mapRoot": "./",
-		"module": "es6",
+		"strictNullChecks": true,
+		"noImplicitAny": true,
+		"module": "es2015",
 		"moduleResolution": "node",
-		"outDir": "../dist/out-tsc",
+		"paths": {
+			"@angular/core": ["node_modules/@angular/core"],
+			"@angular/common": ["node_modules/@angular/common"],
+			"@angular/forms": ["node_modules/@angular/forms"],
+			"rxjs/*": ["node_modules/rxjs/*"],
+			"rxjs/util/noop": ["node_modules/rxjs/noop"]
+		},
+		"rootDir": "src",
+		"outDir": "dist",
 		"sourceMap": true,
+		"inlineSources": true,
 		"target": "es5",
-		"types": [
-			"node"
-		],
-		"typeRoots": [
-			"../node_modules/@types"
+		"skipLibCheck": true,
+		"lib": [
+			"es2015",
+			"dom"
 		]
+	},
+	"files": [
+		"./src/index.ts"
+	],
+	"angularCompilerOptions": {
+		"strictMetadataEmit": true,
+		"genDir": ".tmp"
 	}
 }

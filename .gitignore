@@ -2,7 +2,7 @@
 
 # compiled output
 /dist
-tmp
+/tmp/
 /lib/
 
 # dependencies
@@ -40,3 +40,6 @@ Thumbs.db
 demo/node_modules/
 /aot/
 /aot/node_modules/
+/.tmp/
+
+yarn-error.log
