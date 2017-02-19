@@ -13,16 +13,16 @@ const differenceWith = require('lodash.differencewith');
 
 export const SELECTIZE_VALUE_ACCESSOR: any = {
 	provide: NG_VALUE_ACCESSOR,
-	useExisting: forwardRef(() => Ng2SelectizeComponent),
+	useExisting: forwardRef(() => NgSelectizeComponent),
 	multi: true
 };
 
 @Component({
-	selector: 'ng2-selectize',
+	selector: 'ng-selectize',
 	template: `<select #selectizeInput></select>`,
 	providers: [SELECTIZE_VALUE_ACCESSOR]
 })
-export class Ng2SelectizeComponent implements OnInit, OnChanges, DoCheck, ControlValueAccessor {
+export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, ControlValueAccessor {
 	@Input('config') config: any;
 	@Input('options') options: any[];
 	@Input('optionGroups') optionGroups: any[];

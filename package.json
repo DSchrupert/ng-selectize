@@ -1,12 +1,14 @@
 {
-  "name": "ng2-selectize",
-  "description": "Angular 2 directive for selectize.js",
+  "name": "ng-selectize",
+  "description": "Angular (2,4,...) directive for selectize.js",
   "author": "Nicholas Azar",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "keywords": [
     "angular2-selectize",
+  	"angular-selectize",
     "ng2-selectize",
+ 	"ng-selectize",
     "angular2",
     "selectize",
     "angular",
@@ -17,19 +19,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NicholasAzar/ng2-selectize.git"
+    "url": "git+https://github.com/NicholasAzar/ng-selectize.git"
   },
   "bugs": {
-    "url": "https://github.com/NicholasAzar/ng2-selectize/issues"
+    "url": "https://github.com/NicholasAzar/ng-selectize/issues"
   },
-  "homepage": "hnpm ttps://github.com/NicholasAzar/ng2-selectize#readme",
+  "homepage": "hnpm ttps://github.com/NicholasAzar/ng-selectize#readme",
   "angular-cli": {},
   "scripts": {
     "clean": "rimraf .tmp && rimraf dist",
     "transpile": "ngc",
     "ct": "npm run clean && npm run transpile",
     "package": "rollup -c",
-    "minify": "uglifyjs dist/bundles/ng2-selectize.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ng2-selectize.umd.min.js",
+    "minify": "uglifyjs dist/bundles/ng-selectize.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ng-selectize.umd.min.js",
     "copy": "cpx package-dist.json dist && cpx \"src/selectize/*\" dist/selectize && renamer --find package-dist.json --replace package.json ./dist/*",
     "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy"
   },

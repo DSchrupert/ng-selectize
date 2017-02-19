@@ -1,9 +1,9 @@
 export default {
 	entry: 'dist/index.js',
-	dest: 'dist/bundles/ng2-selectize.umd.js',
+	dest: 'dist/bundles/ng-selectize.umd.js',
 	sourceMap: false,
 	format: 'umd',
-	moduleName: 'ng2-selectize',
+	moduleName: 'ng-selectize',
 	globals: {
 		'@angular/core': 'ng.core',
 		'@angular/common': 'ng.common',

@@ -1,4 +1,4 @@
-import {Ng2SelectizeModule} from "./ng2-selectize.module";
-import {Ng2SelectizeComponent} from "./ng2-selectize.component";
+import {NgSelectizeModule} from "./ng-selectize.module";
+import {NgSelectizeComponent} from "./ng-selectize.component";
 
-export {Ng2SelectizeModule, Ng2SelectizeComponent};
+export {NgSelectizeModule, NgSelectizeComponent};

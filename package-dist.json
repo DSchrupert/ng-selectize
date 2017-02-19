@@ -1,12 +1,14 @@
 {
-	"name": "ng2-selectize",
-	"description": "Angular 2 directive for selectize.js",
+	"name": "ng-selectize",
+	"description": "Angular (2,4,...) directive for selectize.js",
 	"author": "Nicholas Azar",
-	"version": "0.1.0",
+	"version": "1.0.2",
 	"license": "MIT",
 	"keywords": [
 		"angular2-selectize",
+		"angular-selectize",
 		"ng2-selectize",
+		"ng-selectize",
 		"angular2",
 		"selectize",
 		"angular",
@@ -18,14 +20,14 @@
 	"private": false,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/NicholasAzar/ng2-selectize.git"
+		"url": "git+https://github.com/NicholasAzar/ng-selectize.git"
 	},
 	"bugs": {
-		"url": "https://github.com/NicholasAzar/ng2-selectize/issues"
+		"url": "https://github.com/NicholasAzar/ng-selectize/issues"
 	},
-	"homepage": "https://github.com/NicholasAzar/ng2-selectize#readme",
+	"homepage": "https://github.com/NicholasAzar/ng-selectize#readme",
 
-	"main": "bundles/ng2-selectize.umd.min.js",
+	"main": "bundles/ng-selectize.umd.min.js",
 	"module": "index.js",
 	"typings": "index.d.ts",
 	"dependencies": {
