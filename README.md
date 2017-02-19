@@ -4,7 +4,7 @@
 
 Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
 
-[Hosted Example Site](http://nicholasazar.github.io/)
+[Hosted Example Site](https://nicholasazar.github.io/ng2-selectize)
 
 ## Including within existing angular-cli project
 1. `yarn add jquery selectize ng2-selectize`
