@@ -57,7 +57,6 @@
     "@types/selectize": "^0.12.28",
     "cpx": "^1.5.0",
     "renamer": "^0.6.1",
-    "rollup-plugin-node-resolve": "^2.0.0",
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
     "typescript": "~2.0.3",
