@@ -2,7 +2,7 @@
   "name": "ng-selectize",
   "description": "Angular (2,4,...) directive for selectize.js",
   "author": "Nicholas Azar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "keywords": [
     "angular2-selectize",
@@ -32,8 +32,11 @@
     "ct": "npm run clean && npm run transpile",
     "package": "rollup -c",
     "minify": "uglifyjs dist/bundles/ng-selectize.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ng-selectize.umd.min.js",
-    "copy": "cpx package-dist.json dist && cpx \"src/selectize/*\" dist/selectize && renamer --find package-dist.json --replace package.json ./dist/*",
-    "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy"
+    "copy": "npm run copy:package && npm run copy:readme && npm run copy:assets:selectize",
+    "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy",
+  	"copy:readme": "cpx README.md dist",
+  	"copy:package": "cpx package-dist.json dist && renamer --find package-dist.json --replace package.json ./dist/*",
+  	"copy:assets:selectize": "cpx \"src/selectize/*\" dist/selectize"
   },
   "private": true,
   "dependencies": {

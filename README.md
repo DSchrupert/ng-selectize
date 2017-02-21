@@ -6,28 +6,34 @@ Angular2 component for [selectize.js](https://selectize.github.io/selectize.js/)
 
 [Hosted Example Site](https://nicholasazar.github.io/ng-selectize)
 
+
 ## Including within existing angular-cli project
-1. `yarn add jquery selectize ng-selectize`
-2. Add:
-    `"../node_modules/selectize/dist/css/selectize.css",`
-    `"../node_modules/selectize/dist/css/selectize.{your chosen theme}.css"`
-    to the styles array within `.angular-cli.json`
-    
-    (semantic-ui theme has been added to ng-selectize/selectize/selectize.semantic.css if needed)
-3. Add:
-	`"../node_modules/jquery/dist/jquery.min.js",`
-	`"../node_modules/ng-selectize/selectize/selectize.standalone.js"` (or take from /node_modules/selectize/...)
-	to the scripts array within `angular-cli.json`
-3. Import module within applicable @NgModule:
-   `import {NgSelectizeModule} from 'ng-selectize';`
-   `imports: [..., NgSelectizeModule, ...],`
-4. Use within template: `<ng-selectize {attributes}></ng-selectize>`
+1. `npm i --save ng-selectize jquery selectize`
+2. Add the following to the styles array within `.angular-cli.json`:
+	```
+    "../node_modules/selectize/dist/css/selectize.css",
+    "../node_modules/selectize/dist/css/selectize.{your chosen theme}.css"
+    ```
+    (the semantic-ui theme has been added to ng-selectize/selectize/selectize.semantic.css if needed)
+3. Add the following to the scripts array within `.angular-cli.json`
+	```
+	"../node_modules/jquery/dist/jquery.min.js",
+	"../node_modules/ng-selectize/selectize/selectize.standalone.js" (or take from /node_modules/selectize/...)
+	```
+
+3. Import module within applicable `@NgModule`:
+	```
+   import {NgSelectizeModule} from 'ng-selectize';
+   imports: [..., NgSelectizeModule, ...],
+   ```
+4. Use within template: `<ng-selectize [config]="..." [options] = "..." {other-attributes}></ng-selectize>`
+ 
  
 ## Running the demo
  ```
  git pull git@github.com:NicholasAzar/ng-selectize-demo.git
  cd ng-selectize-demo
- yarn
+ npm i
  npm start
  // navigate to localhost:4200
  ```
