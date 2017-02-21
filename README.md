@@ -11,6 +11,7 @@ Angular (2,4,...) component for [selectize.js](https://selectize.github.io/selec
 1. `npm i --save ng-selectize jquery selectize`
 2. Add the following to the styles array within `.angular-cli.json`:
 	```javascript
+	
     "../node_modules/selectize/dist/css/selectize.css",
     "../node_modules/selectize/dist/css/selectize.{your chosen theme}.css"
     ```
