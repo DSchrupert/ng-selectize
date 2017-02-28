@@ -52,6 +52,8 @@ The docs directory within this repo is the result of `ng build --prod --aot` fro
 | noOptionsPlaceholder | String | '' | Placeholder text to be displayed when no options are available | Yes |
 | hasOptionsPlaceholder | String | '' | Placeholder text to be displayed when options are available | Yes |
 | enabled | Boolean | true | Enables the input field when true, disabled otherwise | Yes |
+| formControl | FormControl | null | Form control field to be used to set value and/or validation. | Yes |
+| errorClass | String | 'has-error' | CSS Class to be added to the field when  | Yes |
 | optionGroups | Object | null | Organize options within groups | Yes |
 
 ## Included Selectize Plugins
