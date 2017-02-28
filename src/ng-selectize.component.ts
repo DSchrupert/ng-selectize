@@ -1,6 +1,14 @@
 import {
-	Input, OnInit, OnChanges, SimpleChanges, DoCheck, forwardRef, Component, ViewChild,
-	Output, EventEmitter
+	Input,
+	OnInit,
+	OnChanges,
+	SimpleChanges,
+	DoCheck,
+	forwardRef,
+	Component,
+	ViewChild,
+	Output,
+	EventEmitter
 } from "@angular/core";
 import {NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl} from "@angular/forms";
 
@@ -32,6 +40,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	@Input('enabled') enabled: boolean;
 	@Input('ngModel') _value: string[];
 	@Input() formControl:FormControl;
+	@Input() errorClass:string;
 
 	@Output() onBlur:EventEmitter<void> = new EventEmitter<void>(false);
 
@@ -100,6 +109,9 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	}
 
 	onBlurEvent() {
+		if (this.formControl) {
+			this.formControl.markAsTouched();
+		}
 		this.onBlur.emit();
 		this.evalHasError();
 	}
@@ -120,9 +132,9 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 
 	evalHasError() {
 		if(this.formControl && this.formControl.touched && this.formControl.invalid) {
-			$(this.selectize.$control).parent().addClass('has-error');
+			$(this.selectize.$control).parent().addClass(this.errorClass || 'has-error');
 		} else {
-			$(this.selectize.$control).parent().removeClass('has-error');
+			$(this.selectize.$control).parent().removeClass(this.errorClass || 'has-error');
 		}
 	}
 
@@ -206,10 +218,14 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 
 	/**
 	 * Implementation from ControlValueAccessor
+	 *
+	 * Empty check on 'obj' removed due to restriction on resetting the field.
+	 * From testing, async should still function appropriately.
+	 *
 	 * @param obj
 	 */
 	writeValue(obj: any): void {
-		if (obj && obj !== this._value) {
+		if (obj !== this._value) {
 			this._value = obj;
 		}
         this.selectize.setValue(this._value);
