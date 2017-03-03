@@ -87,14 +87,12 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 				this.onEnabledStatusChange();
 			}
 		}
-
-		if (changes.hasOwnProperty('config') && this.config) {
-			this.reset();
-		}
 	}
 
 	/**
 	 * Implementing deep check for option comparison
+	 *
+	 * FIXME -> Implement deep check to only compare against label and value fields.
 	 */
 	ngDoCheck(): void {
 		if (!isEqual(this._oldOptions, this.options)) {
@@ -144,6 +142,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	updatePlaceholder(): void {
 		this.selectize.settings.placeholder = this.getPlaceholder();
 		this.selectize.updatePlaceholder();
+		this.selectize.showInput(); // Without this, when options are cleared placeholder only appears after focus.
 	}
 
 	/**
@@ -222,6 +221,8 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	 * Empty check on 'obj' removed due to restriction on resetting the field.
 	 * From testing, async should still function appropriately.
 	 *
+	 * FIXME This might not be necessary anymore..
+	 *
 	 * @param obj
 	 */
 	writeValue(obj: any): void {
@@ -253,8 +254,10 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 
 	set value(value: string[]) {
 		if (this._value !== value) {
-			this._value = value;
-			this.onChangeCallback(value);
+			setTimeout(() => { // Fix for change after check issue in development mode.
+				this._value = cloneDeep(value);
+				this.onChangeCallback(this._value);
+			});
 		}
 	}
 }
