@@ -73,6 +73,8 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		}
 		this._oldOptions = cloneDeep(this.options);
 		this._oldOptionGroups = cloneDeep(this.optionGroups);
+
+		this.onEnabledStatusChange();
 	}
 
 	/**
