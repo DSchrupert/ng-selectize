@@ -37,7 +37,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	@Input('placeholder') placeholder: string;
 	@Input('hasOptionsPlaceholder') hasOptionsPlaceholder: string;
 	@Input('noOptionsPlaceholder') noOptionsPlaceholder: string;
-	@Input('enabled') enabled: boolean;
+	@Input('enabled') enabled: boolean = true;
 	@Input('ngModel') _value: string[];
 	@Input() formControl:FormControl;
 	@Input() errorClass:string;
