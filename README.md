@@ -29,6 +29,8 @@ Angular (2,4,...) component for [selectize.js](https://selectize.github.io/selec
 	```
 4. Use within template: `<ng-selectize [config]="..." [options] = "..." {other-attributes}></ng-selectize>`
  
+## Using with SystemJS
+See [Issue #28](https://github.com/NicholasAzar/ng-selectize/issues/28)
  
 ## Running the demo
  ```javascript
