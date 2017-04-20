@@ -1389,9 +1389,10 @@
 					self.positionDropdown.apply(self, arguments);
 				}
 			});
-			$window.on('mousemove' + eventNS, function () {
-				self.ignoreHover = false;
-			});
+
+			// Bind to the mousemove event.
+			this.bindMouseListener();
+
 
 			// store original children and tab index so that they can be
 			// restored when the destroy() method is called.
@@ -1437,6 +1438,22 @@
 				self.onSearchChange('');
 			}
 
+		},
+
+		/**
+		 * To fix https://github.com/NicholasAzar/ng-selectize/issues/37
+		 *
+		 * When setting ignoreHover to true, rebind to mousemove.
+		 * After mouse is moved and event is fired, unset ignoreHover, and unbind.
+		 *
+		 * Angular change detection should then only be triggered once.
+		 */
+		bindMouseListener: function () {
+			var $document = $(document);
+			$document.on('mousemove' + this.eventNS, function () {
+				self.ignoreHover = false;
+				$document.off('mousemove' + this.eventNS);
+			}.bind(this));
 		},
 
 		/**
@@ -1650,6 +1667,7 @@
 						self.open();
 					} else if (self.$activeOption) {
 						self.ignoreHover = true;
+						self.bindMouseListener();
 						var $next = self.getAdjacentOption(self.$activeOption, 1);
 						if ($next.length) self.setActiveOption($next, true, true);
 					}
@@ -1660,6 +1678,7 @@
 				case KEY_UP:
 					if (self.$activeOption) {
 						self.ignoreHover = true;
+						self.bindMouseListener();
 						var $prev = self.getAdjacentOption(self.$activeOption, -1);
 						if ($prev.length) self.setActiveOption($prev, true, true);
 					}
@@ -2276,7 +2295,7 @@
 			}
 
 			$dropdown_content.html(html);
-			
+
 			// highlight matching terms inline
 			if (self.settings.highlight) {
 				$dropdown_content.removeHighlight();
@@ -3746,6 +3765,7 @@
 
 				if (this.isOpen && (e.keyCode === KEY_LEFT || e.keyCode === KEY_RIGHT)) {
 					self.ignoreHover = true;
+					self.bindMouseListener();
 					$optgroup = this.$activeOption.closest('[data-group]');
 					index = $optgroup.find('[data-selectable]').index(this.$activeOption);
 
