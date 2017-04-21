@@ -1390,8 +1390,8 @@
 				}
 			});
 
-			// Bind to the mousemove event.
-			this.bindMouseListener();
+			// Bind to the mousemove event initially.
+			this.ignoreHoverUntilMouseMove();
 
 
 			// store original children and tab index so that they can be
@@ -1448,11 +1448,12 @@
 		 *
 		 * Angular change detection should then only be triggered once.
 		 */
-		bindMouseListener: function () {
+		ignoreHoverUntilMouseMove: function () {
+			this.ignoreHover = true;
 			var $document = $(document);
 			$document.on('mousemove' + this.eventNS, function () {
-				self.ignoreHover = false;
 				$document.off('mousemove' + this.eventNS);
+				this.ignoreHover = false;
 			}.bind(this));
 		},
 
@@ -1666,8 +1667,7 @@
 					if (!self.isOpen && self.hasOptions) {
 						self.open();
 					} else if (self.$activeOption) {
-						self.ignoreHover = true;
-						self.bindMouseListener();
+						self.ignoreHoverUntilMouseMove();
 						var $next = self.getAdjacentOption(self.$activeOption, 1);
 						if ($next.length) self.setActiveOption($next, true, true);
 					}
@@ -1677,8 +1677,7 @@
 					if (!e.ctrlKey || e.altKey) break;
 				case KEY_UP:
 					if (self.$activeOption) {
-						self.ignoreHover = true;
-						self.bindMouseListener();
+						self.ignoreHoverUntilMouseMove();
 						var $prev = self.getAdjacentOption(self.$activeOption, -1);
 						if ($prev.length) self.setActiveOption($prev, true, true);
 					}
@@ -3764,8 +3763,7 @@
 				var index, $option, $options, $optgroup;
 
 				if (this.isOpen && (e.keyCode === KEY_LEFT || e.keyCode === KEY_RIGHT)) {
-					self.ignoreHover = true;
-					self.bindMouseListener();
+					self.ignoreHoverUntilMouseMove();
 					$optgroup = this.$activeOption.closest('[data-group]');
 					index = $optgroup.find('[data-selectable]').index(this.$activeOption);
 
