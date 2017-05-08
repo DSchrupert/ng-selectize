@@ -100,6 +100,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		if (!isEqual(this._oldOptions, this.options)) {
 			this.onSelectizeOptionsChange();
 			this._oldOptions = cloneDeep(this.options);
+            this.updateSelectizeValue();
 		}
 		if (!isEqual(this._oldOptionGroups, this.optionGroups)) {
 			this.onSelectizeOptionGroupChange();
@@ -217,6 +218,13 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		return newPlaceholder;
 	}
 
+    /**
+     * Update the selectize value
+     */
+    updateSelectizeValue(): void {
+        this.selectize.setValue(this._value);
+    }
+
 	/**
 	 * Implementation from ControlValueAccessor
 	 *
@@ -231,7 +239,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		if (obj !== this._value) {
 			this._value = obj;
 		}
-        this.selectize.setValue(this._value);
+        this.updateSelectizeValue();
 	}
 
 	/**
