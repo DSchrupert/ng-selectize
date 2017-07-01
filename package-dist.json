@@ -2,7 +2,7 @@
 	"name": "ng-selectize",
 	"description": "Angular (2,4,...) directive for selectize.js",
 	"author": "Nicholas Azar",
-	"version": "1.0.10",
+	"version": "1.0.11",
 	"license": "MIT",
 	"keywords": [
 		"angular2-selectize",
@@ -37,7 +37,7 @@
 		"lodash.isequal": "^4.5.0"
 	},
 	"peerDependencies": {
-		"@angular/core": "^2.4.0",
+		"@angular/core": "^4.0.0",
 		"reflect-metadata": "^0.1.8",
 		"rxjs": "^5.0.1",
 		"zone.js": "^0.7.2"
