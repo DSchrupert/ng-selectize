@@ -8,16 +8,15 @@ import {
 	Component,
 	ViewChild,
 	Output,
-	EventEmitter
-} from "@angular/core";
-import {NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl} from "@angular/forms";
+	EventEmitter, IterableDiffers, IterableDiffer, IterableChangeRecord, IterableChanges
+} from '@angular/core';
+import {
+	NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl
+} from '@angular/forms';
 
-declare const $:any;
+declare const $: any;
 
-const isEqual = require('lodash.isequal');
-const cloneDeep = require('lodash.clonedeep');
-const find = require('lodash.find');
-const differenceWith = require('lodash.differencewith');
+import cloneDeep from 'lodash.clonedeep';
 
 export const SELECTIZE_VALUE_ACCESSOR: any = {
 	provide: NG_VALUE_ACCESSOR,
@@ -31,30 +30,33 @@ export const SELECTIZE_VALUE_ACCESSOR: any = {
 	providers: [SELECTIZE_VALUE_ACCESSOR]
 })
 export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, ControlValueAccessor {
-	@Input('config') config: any;
-	@Input('options') options: any[];
-	@Input('optionGroups') optionGroups: any[];
-	@Input('placeholder') placeholder: string;
-	@Input('hasOptionsPlaceholder') hasOptionsPlaceholder: string;
-	@Input('noOptionsPlaceholder') noOptionsPlaceholder: string;
-	@Input('enabled') enabled: boolean = true;
-	@Input('ngModel') _value: string[];
-	@Input() formControl:FormControl;
-	@Input() errorClass:string;
 
-	@Output() onBlur:EventEmitter<void> = new EventEmitter<void>(false);
+	@Input() config: any;
+	private _options: any[];
+	private _options_differ: IterableDiffer<any>;
+	private _optgroups: any[];
+	private _optgroups_differ: IterableDiffer<any>;
+
+	@Input() placeholder: string;
+	@Input() hasOptionsPlaceholder: string;
+	@Input() noOptionsPlaceholder: string;
+	@Input() enabled = true;
+	@Input() value: string[];
+	@Input() formControl: FormControl;
+	@Input() errorClass: string;
+
+	@Output() onBlur: EventEmitter<void> = new EventEmitter<void>(false);
 
 	@ViewChild('selectizeInput') selectizeInput: any;
 
 	private selectize: any;
-	private _oldOptions: any[];
 
-	private _oldOptionGroups: any[];
 	// Control value accessors.
-	private onTouchedCallback: () => void = () => {};
-	private onChangeCallback: (_: any) => void = () => {};
+	private onTouchedCallback: () => {};
+	private onChangeCallback: (_: any) => {};
 
-	constructor() {}
+	constructor(private _differs: IterableDiffers) {
+	}
 
 	ngOnInit(): void {
 		this.reset();
@@ -63,17 +65,9 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	reset() {
 		this.selectize = $(this.selectizeInput.nativeElement).selectize(this.config)[0].selectize;
 		this.selectize.on('change', this.onSelectizeValueChange.bind(this));
-		this.selectize.on('option_add', this.onSelectizeOptionAdd.bind(this));
 		this.selectize.on('blur', this.onBlurEvent.bind(this));
 
-		this.onSelectizeOptionsChange();
-		this.onSelectizeOptionGroupChange();
-		if (this.placeholder && this.placeholder.length > 0) {
-			this.updatePlaceholder();
-		}
-		this._oldOptions = cloneDeep(this.options);
-		this._oldOptionGroups = cloneDeep(this.optionGroups);
-
+		this.updatePlaceholder();
 		this.onEnabledStatusChange();
 	}
 
@@ -82,7 +76,8 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	 */
 	ngOnChanges(changes: SimpleChanges): void {
 		if (this.selectize) {
-			if (changes.hasOwnProperty('placeholder') || changes.hasOwnProperty('hasOptionsPlaceholder') || changes.hasOwnProperty('noOptionsPlaceholder')) {
+			if (changes.hasOwnProperty('placeholder') || changes.hasOwnProperty('hasOptionsPlaceholder')
+				|| changes.hasOwnProperty('noOptionsPlaceholder')) {
 				this.updatePlaceholder();
 			}
 			if (changes.hasOwnProperty('enabled')) {
@@ -97,14 +92,39 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	 * FIXME -> Implement deep check to only compare against label and value fields.
 	 */
 	ngDoCheck(): void {
-		if (!isEqual(this._oldOptions, this.options)) {
-			this.onSelectizeOptionsChange();
-			this._oldOptions = cloneDeep(this.options);
+		if (this._options_differ) {
+			const changes = this._options_differ.diff(this._options);
+			if (changes) {
+				this._applyOptionsChanges(changes);
+			}
 		}
-		if (!isEqual(this._oldOptionGroups, this.optionGroups)) {
-			this.onSelectizeOptionGroupChange();
-			this._oldOptionGroups = cloneDeep(this.optionGroups);
+		if (this._optgroups_differ) {
+			const changes = this._optgroups_differ.diff(this._optgroups);
+			if (changes) {
+				this._applyOptionGroupChanges(changes);
+			}
 		}
+	}
+
+	private _applyOptionsChanges(changes: IterableChanges<any>): void {
+		changes.forEachAddedItem((record: IterableChangeRecord<any>) => {
+			this.onSelectizeOptionAdd(record.item);
+		});
+		changes.forEachRemovedItem((record: IterableChangeRecord<any>) => {
+			this.onSelectizeOptionRemove(record.item);
+		});
+		this.updatePlaceholder();
+		this.evalHasError();
+	}
+
+	private _applyOptionGroupChanges(changes: any): void {
+		changes.forEachAddedItem((record: IterableChangeRecord<any>) => {
+			this.onSelectizeOptGroupAdd(record.item);
+		});
+		changes.forEachRemovedItem((record: IterableChangeRecord<any>) => {
+			this.onSelectizeOptGroupRemove(record.item);
+		});
+		this.updatePlaceholder();
 		this.evalHasError();
 	}
 
@@ -116,25 +136,40 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		this.evalHasError();
 	}
 
+	onSelectizeOptGroupAdd(optgroup: any): void {
+		this.selectize.addOptionGroup(optgroup[this.getOptgroupField()], optgroup);
+	}
+
+	onSelectizeOptGroupRemove(optgroup: any): void {
+		this.selectize.removeOptionGroup(optgroup[this.getOptgroupField()]);
+	}
+
 	/**
 	 * Refresh selected values when options change.
 	 */
-	onSelectizeOptionAdd(optionValue:string): void {
+	onSelectizeOptionAdd(option: any): void {
+		this.selectize.addOption(cloneDeep(option));
+		const valueField = this.getValueField();
 		if (this.value) {
 			const items = typeof this.value === 'string' ? [this.value] : this.value;
-			if (find(items, (value:any) => {
-					return value === optionValue
-				})) {
-				this.selectize.addItem(optionValue, true);
+			if (items.find(value => value === option[valueField])) {
+				this.selectize.addItem(option[valueField], true);
 			}
 		}
 	}
 
+	onSelectizeOptionRemove(option: any): void {
+		this.selectize.removeOption(option[this.getValueField()]);
+	}
+
 	evalHasError() {
-		if(this.formControl && this.formControl.touched && this.formControl.invalid) {
-			$(this.selectize.$control).parent().addClass(this.errorClass || 'has-error');
-		} else {
-			$(this.selectize.$control).parent().removeClass(this.errorClass || 'has-error');
+		const parent = $(this.selectize.$control).parent();
+		if (this.formControl) {
+			if (this.formControl.touched && this.formControl.invalid) {
+				parent.addClass(this.errorClass || 'has-error');
+			} else if (parent.hasClass('has-error')) {
+				parent.removeClass(this.errorClass || 'has-error');
+			}
 		}
 	}
 
@@ -142,9 +177,11 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	 * Update the current placeholder based on the given input parameter.
 	 */
 	updatePlaceholder(): void {
-		this.selectize.settings.placeholder = this.getPlaceholder();
-		this.selectize.updatePlaceholder();
-		this.selectize.showInput(); // Without this, when options are cleared placeholder only appears after focus.
+		if (this.selectize.items.length === 0 && this.selectize.settings.placeholder !== this.getPlaceholder()) {
+			this.selectize.settings.placeholder = this.getPlaceholder();
+			this.selectize.updatePlaceholder();
+			this.selectize.showInput(); // Without this, when options are cleared placeholder only appears after focus.
+		}
 	}
 
 	/**
@@ -156,65 +193,31 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	}
 
 	/**
-	 * Triggered when a change is detected with the given set of options.
-	 */
-	onSelectizeOptionsChange(): void {
-		const optionsRemoved = differenceWith(this._oldOptions, this.options, (oldValue:any, newValue:any) => {
-			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField]
-				&& oldValue[this.selectize.settings.labelField] === newValue[this.selectize.settings.labelField];
-		});
-
-		const newOptionsAdded = differenceWith(this.options, this._oldOptions, (oldValue:any, newValue:any) => {
-			return oldValue[this.selectize.settings.valueField] === newValue[this.selectize.settings.valueField]
-				&& oldValue[this.selectize.settings.labelField] === newValue[this.selectize.settings.labelField];
-		});
-
-		if (optionsRemoved && optionsRemoved.length > 0) {
-			optionsRemoved.forEach((option:any) => {
-				this.selectize.removeOption(option[this.selectize.settings.valueField]);
-			});
-		}
-
-		if (newOptionsAdded && newOptionsAdded.length > 0) {
-			newOptionsAdded.forEach((option:any) => {
-				this.selectize.addOption(cloneDeep(option));
-			});
-		}
-		this.updatePlaceholder();
-	}
-
-	/**
-	 * Triggered when a change is detected with the given set of option groups.
-	 */
-	onSelectizeOptionGroupChange(): void {
-		if (this.optionGroups != null && this.optionGroups.length > 0) {
-			this.optionGroups.forEach((optionGroup) => {
-				this.selectize.addOptionGroup(optionGroup.id, optionGroup);
-			});
-		}
-	}
-
-	/**
 	 * Dispatches change event when a value change is detected.
 	 * @param $event
 	 */
-	onSelectizeValueChange($event:any): void {
-		this.value = this.selectize.getValue();
+	onSelectizeValueChange($event: any): void {
+		// In some cases this gets called before registerOnChange.
+		if (this.onChangeCallback) {
+			this.onChangeCallback(this.selectize.getValue());
+		}
 	}
 
 	/**
 	 * Returns the applicable placeholder.
 	 */
 	getPlaceholder(): string {
-		let newPlaceholder: string;
-		if (this.options != null && this.options.length > 0 && this.hasOptionsPlaceholder != null && this.hasOptionsPlaceholder.length > 0) {
-			newPlaceholder = this.hasOptionsPlaceholder;
-		} else if ((this.options == null || this.options.length == 0) && (this.noOptionsPlaceholder != null && this.noOptionsPlaceholder.length > 0)) { // no options
-			newPlaceholder = this.noOptionsPlaceholder
-		} else {
-			newPlaceholder = this.placeholder;
+		if (this.hasOptionsPlaceholder) {
+			if (this.options && this.options.length > 0) {
+				return this.hasOptionsPlaceholder;
+			}
 		}
-		return newPlaceholder;
+		if (this.noOptionsPlaceholder) {
+			if (!this.options || this.options.length === 0) {
+				return this.noOptionsPlaceholder;
+			}
+		}
+		return this.placeholder;
 	}
 
 	/**
@@ -228,10 +231,10 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	 * @param obj
 	 */
 	writeValue(obj: any): void {
-		if (obj !== this._value) {
-			this._value = obj;
+		if (obj !== this.value) {
+			this.value = obj;
 		}
-        this.selectize.setValue(this._value);
+		this.selectize.setValue(this.value);
 	}
 
 	/**
@@ -250,16 +253,35 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		this.onTouchedCallback = fn;
 	}
 
-	get value(): string[] {
-		return this._value;
+	getValueField(): string {
+		return this.config['valueField'] ? this.config['valueField'] : 'value';
 	}
 
-	set value(value: string[]) {
-		if (this._value !== value) {
-			setTimeout(() => { // Fix for change after check issue in development mode.
-				this._value = cloneDeep(value);
-				this.onChangeCallback(this._value);
-			});
+	getOptgroupField(): string {
+		return this.config['optgroupField'] ? this.config['optgroupField'] : 'optgroup';
+	}
+
+	@Input()
+	set options(value: any[]) {
+		this._options = value;
+		if (!this._options_differ && value) {
+			this._options_differ = this._differs.find(value).create();
 		}
+	}
+
+	get options(): any[] {
+		return this._options;
+	}
+
+	@Input()
+	set optgroups(value: any[]) {
+		this._optgroups = value;
+		if (!this._optgroups_differ && value) {
+			this._optgroups_differ = this._differs.find(value).create();
+		}
+	}
+
+	get optgroups(): any[] {
+		return this._optgroups;
 	}
 }
