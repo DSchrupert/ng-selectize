@@ -152,7 +152,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		const valueField = this.getValueField();
 		if (this.value) {
 			const items = typeof this.value === 'string' ? [this.value] : this.value;
-			if (items.find(value => value === option[valueField])) {
+			if (items && items instanceof Array && items.find(value => value === option[valueField])) {
 				this.selectize.addItem(option[valueField], true);
 			}
 		}
