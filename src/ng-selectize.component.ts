@@ -37,6 +37,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	private _optgroups: any[];
 	private _optgroups_differ: IterableDiffer<any>;
 
+	@Input() id: string;
 	@Input() placeholder: string;
 	@Input() hasOptionsPlaceholder: string;
 	@Input() noOptionsPlaceholder: string;
@@ -59,6 +60,9 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	}
 
 	ngOnInit(): void {
+		if (this.id && this.id.length > 0) {
+			this.selectizeInput.nativeElement.id = this.id;
+		}
 		this.reset();
 	}
 
