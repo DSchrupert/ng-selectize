@@ -8,6 +8,7 @@ import {
 	Component,
 	ViewChild,
 	Output,
+	Renderer2,
 	EventEmitter, IterableDiffers, IterableDiffer, IterableChangeRecord, IterableChanges
 } from '@angular/core';
 import {
@@ -37,6 +38,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	private _optgroups: any[];
 	private _optgroups_differ: IterableDiffer<any>;
 
+	@Input() id: string;
 	@Input() placeholder: string;
 	@Input() hasOptionsPlaceholder: string;
 	@Input() noOptionsPlaceholder: string;
@@ -55,10 +57,13 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	private onTouchedCallback: () => {};
 	private onChangeCallback: (_: any) => {};
 
-	constructor(private _differs: IterableDiffers) {
+	constructor(private _differs: IterableDiffers, private renderer: Renderer2) {
 	}
 
 	ngOnInit(): void {
+		if (this.id && this.id.length > 0) {
+			this.renderer.setAttribute(this.selectizeInput.nativeElement, 'id', this.id);
+		}
 		this.reset();
 	}
 
