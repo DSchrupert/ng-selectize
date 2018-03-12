@@ -48,6 +48,7 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 	@Input() errorClass: string;
 
 	@Output() onBlur: EventEmitter<void> = new EventEmitter<void>(false);
+	@Output() onLoad: EventEmitter<void> = new EventEmitter<void>(false);
 
 	@ViewChild('selectizeInput') selectizeInput: any;
 
@@ -119,7 +120,9 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 			this.onSelectizeOptionRemove(record.item);
 		});
 		this.updatePlaceholder();
+		this.selectize.setValue(this.value);
 		this.evalHasError();
+		this.onLoadEvent();
 	}
 
 	private _applyOptionGroupChanges(changes: any): void {
@@ -130,7 +133,9 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 			this.onSelectizeOptGroupRemove(record.item);
 		});
 		this.updatePlaceholder();
+		this.selectize.setValue(this.value);
 		this.evalHasError();
+		this.onLoadEvent();
 	}
 
 	onBlurEvent() {
@@ -139,6 +144,9 @@ export class NgSelectizeComponent implements OnInit, OnChanges, DoCheck, Control
 		}
 		this.onBlur.emit();
 		this.evalHasError();
+	}
+	onLoadEvent() {
+		this.onLoad.emit();
 	}
 
 	onSelectizeOptGroupAdd(optgroup: any): void {
