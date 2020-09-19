@@ -1,0 +1,14 @@
+{
+  "name": "ng-selectize",
+  "version": "2.0.0",
+  "peerDependencies": {
+    "@angular/common": "^10.1.2",
+    "@angular/core": "^10.1.2",
+    "jquery": "^3.5.1",
+    "selectize": "^0.12.6",
+    "lodash.clonedeep": "^4.5.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
