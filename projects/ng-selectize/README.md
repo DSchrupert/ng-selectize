@@ -1,24 +1,62 @@
-# NgSelectize
+# ng-selectize
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
+[![npm version](https://badge.fury.io/js/ng-selectize.svg)](https://badge.fury.io/js/ng-selectize)
 
-## Code scaffolding
+Angular (2,4,...) component for [selectize.js](https://selectize.github.io/selectize.js/)
 
-Run `ng generate component component-name --project ng-selectize` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-selectize`.
-> Note: Don't forget to add `--project ng-selectize` or else it will be added to the default project in your `angular.json` file. 
+[Hosted Example Site](https://nicholasazar.github.io/ng-selectize)
 
-## Build
+## Including within existing angular-cli project
+1. `npm i --save ng-selectize jquery selectize`
+2. Add the following to the styles array within `angular.json`:
+	```javascript
+	
+    "node_modules/selectize/dist/css/selectize.css",
+    "node_modules/selectize/dist/css/selectize.{your chosen theme}.css" // eg: .../selectize.bootstrap3.css
+    // (a semantic-ui theme has been added to node_modules/ng-selectize/assets/selectize.semantic.css if needed)
+    ```
+    
+3. Add the following to the scripts array within `angular.json`
+	```javascript
+	"node_modules/jquery/dist/jquery.min.js",
+	"node_modules/ng-selectize/assets/selectize.standalone.js" // (or take from node_modules/selectize/dist/js/standalone/selectize.min.js)
+	```
 
-Run `ng build ng-selectize` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Import module within applicable `@NgModule`:
+	```javascript
+	import {NgSelectizeModule} from 'ng-selectize';
+	imports: [..., NgSelectizeModule, ...],
+	```
+4. Use within template: `<ng-selectize [config]="..." [options] = "..." {other-attributes}></ng-selectize>`
+ 
+## Running the demo
+ ```javascript
+ 
+ git pull git@github.com:NicholasAzar/ng-selectize-demo.git
+ cd ng-selectize-demo
+ npm i
+ npm start
+ // navigate to localhost:4200
+ ```
 
-## Publishing
+## Docs
+The docs directory within this repo is the result of `ng build --prod --aot` from the [ng-selectize-demo](https://github.com/NicholasAzar/ng-selectize-demo) repository. It can be accessed from the hosted example site above.
 
-After building your library with `ng build ng-selectize`, go to the dist folder `cd dist/ng-selectize` and run `npm publish`.
+## Attributes
+| Attribute | Type | Default | Description | Implemented |
+| --- | --- | --- | --- | --- |
+| config | Object | null | Selectize config | Yes |
+| options | Array | null | Available options to select from | Yes |
+| placeholder | String | '' | Placeholder text to be displayed. Is overridden if hasOptionsPlaceholder/noOptionsPlaceholder are non-null | Yes |
+| noOptionsPlaceholder | String | '' | Placeholder text to be displayed when no options are available | Yes |
+| hasOptionsPlaceholder | String | '' | Placeholder text to be displayed when options are available | Yes |
+| enabled | Boolean | true | Enables the input field when true, disabled otherwise | Yes |
+| formControl | FormControl | null | Form control field to be used to set value and/or validation. | Yes |
+| errorClass | String | 'has-error' | CSS Class to be added to the field when  | Yes |
+| optionGroups | Object | null | Organize options within groups | Yes |
 
-## Running unit tests
+## Included Selectize Plugins
+| Name | Options | Description |
+| --- | --- | --- |
+| dropdown_direction | {'auto', 'up', 'down'} | Control the direction in which the dropdown opens. |
 
-Run `ng test ng-selectize` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

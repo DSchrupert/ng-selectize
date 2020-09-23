@@ -1,6 +1,30 @@
 {
   "name": "ng-selectize",
+  "description": "Angular (2,4,...) component for selectize.js",
+  "author": "Nicholas Azar",
   "version": "2.0.0",
+  "license": "MIT",
+  "keywords": [
+    "angular2-selectize",
+    "angular-selectize",
+    "ng2-selectize",
+    "ng-selectize",
+    "angular2",
+    "selectize",
+    "angular",
+    "ng2",
+    "directive",
+    "component",
+    "select"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicholasAzar/ng-selectize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NicholasAzar/ng-selectize/issues"
+  },
+  "homepage": "hnpm ttps://github.com/NicholasAzar/ng-selectize#readme",
   "peerDependencies": {
     "@angular/common": "^10.1.2",
     "@angular/core": "^10.1.2",
